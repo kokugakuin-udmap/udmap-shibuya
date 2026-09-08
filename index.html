@@ -1,0 +1,596 @@
+<title>渋谷キャンパス UDマップ</title>
+<meta name="description" content="國學院大學渋谷キャンパスのトイレ設備（多目的トイレ・手すり・オストメイト・ベビーシート等）を建物・階ごとに調べられるユニバーサルデザインマップ">
+<meta name="robots" content="noindex, nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@500;700&family=Noto+Sans+JP:wght@400;500;700&display=swap">
+<style>
+:root{
+  --ground:#FFFDF6; --surface:#FFFFFF; --surface2:#F6F2E4; --line:#DDD7C4; --ink:#1E1D1A; --ink2:#5B5850;
+  --accent:#F2C200; --accent-ink:#1E1D1A; --navy:#223A6B; --navy-ink:#FFFFFF; --link:#1F3F80;
+  --ok:#1E7B45; --ok-bg:#E3F3E8; --no:#B3382D; --no-bg:#F8E4E0; --part:#A86A00; --part-bg:#FBF0D6; --unk:#6F6C64; --unk-bg:#EEECE5;
+  --focus:#1F3F80; --shadow:0 2px 10px rgba(40,35,20,.10);
+  --map-bg:#EFEBDD; --map-road:#FFFDF6; --map-bld:#F2C200; --map-bld-ink:#1E1D1A; --map-off:#D9D4C2; --map-off-ink:#5B5850; --map-mall:#E3DDC8; --map-sky:#663300; --map-slope:#1E7B45; --map-slope-ink:#FFFFFF; --map-bus:#9A0079; --map-multi:#0041FF; --map-ev:#000000; --map-aed:#FFFFFF; --map-aed-ink:#D00000; --map-gate:#FFFFFF; --map-gate-ink:#000000;
+  --fs:1rem;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --ground:#16171B; --surface:#1F2126; --surface2:#262931; --line:#3A3D46; --ink:#EFEDE6; --ink2:#B5B2A8;
+    --accent:#F2C200; --accent-ink:#1E1D1A; --navy:#2C4A86; --navy-ink:#FFFFFF; --link:#9DB4E8;
+    --ok:#7CD39A; --ok-bg:#1E3527; --no:#F0918A; --no-bg:#42221F; --part:#F0BE5C; --part-bg:#3E3216; --unk:#A8A59D; --unk-bg:#2E3036;
+    --focus:#F2C200; --shadow:0 2px 10px rgba(0,0,0,.4);
+    --map-bg:#22242A; --map-road:#16171B; --map-bld:#F2C200; --map-bld-ink:#1E1D1A; --map-off:#3A3D46; --map-off-ink:#B5B2A8; --map-mall:#2F323A; --map-sky:#B39B6E; --map-slope:#35A16B; --map-slope-ink:#000000; --map-bus:#C266B8; --map-multi:#4D7CFF; --map-ev:#000000; --map-aed:#FFFFFF; --map-aed-ink:#D00000; --map-gate:#FFFFFF; --map-gate-ink:#000000;
+  }
+}
+:root[data-theme="dark"]{
+  --ground:#16171B; --surface:#1F2126; --surface2:#262931; --line:#3A3D46; --ink:#EFEDE6; --ink2:#B5B2A8;
+  --accent:#F2C200; --accent-ink:#1E1D1A; --navy:#2C4A86; --navy-ink:#FFFFFF; --link:#9DB4E8;
+  --ok:#7CD39A; --ok-bg:#1E3527; --no:#F0918A; --no-bg:#42221F; --part:#F0BE5C; --part-bg:#3E3216; --unk:#A8A59D; --unk-bg:#2E3036;
+  --focus:#F2C200; --shadow:0 2px 10px rgba(0,0,0,.4);
+  --map-bg:#22242A; --map-road:#16171B; --map-bld:#F2C200; --map-bld-ink:#1E1D1A; --map-off:#3A3D46; --map-off-ink:#B5B2A8; --map-mall:#2F323A; --map-sky:#B39B6E; --map-slope:#35A16B; --map-slope-ink:#000000; --map-bus:#C266B8; --map-multi:#4D7CFF; --map-ev:#000000; --map-aed:#FFFFFF; --map-aed-ink:#D00000; --map-gate:#FFFFFF; --map-gate-ink:#000000;
+}
+*{box-sizing:border-box}
+html{font-size:var(--fs)}
+body{margin:0;background:var(--ground);color:var(--ink);font-family:"Noto Sans JP","Hiragino Sans","Yu Gothic",system-ui,sans-serif;line-height:1.7;font-feature-settings:"palt";}
+h1,h2,h3,h4{font-family:"Zen Kaku Gothic New","Noto Sans JP","Hiragino Sans",sans-serif;line-height:1.3;text-wrap:balance;margin:0}
+a{color:var(--link)}
+button{font:inherit;color:inherit}
+:focus-visible{outline:3px solid var(--focus);outline-offset:3px;border-radius:4px}
+h1[tabindex="-1"]:focus{outline:none}
+.skip{position:absolute;left:-999px;top:8px;background:var(--accent);color:var(--accent-ink);padding:.5rem 1rem;z-index:100;font-weight:700;border-radius:4px}
+.skip:focus{left:8px}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+
+/* header */
+.top{background:var(--navy);color:var(--navy-ink);padding:.6rem 1rem;display:flex;flex-wrap:wrap;align-items:center;gap:.6rem 1.2rem}
+.top .brand{display:flex;align-items:center;gap:.7rem;text-decoration:none;color:inherit}
+.top .mark{width:2.2rem;height:2.2rem;border-radius:6px;background:var(--accent);color:var(--accent-ink);display:grid;place-items:center;font-family:"Zen Kaku Gothic New",sans-serif;font-weight:700;font-size:1.05rem}
+.top .brand b{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:700;font-size:1.15rem;letter-spacing:.02em}
+.top .brand small{display:block;font-size:.72rem;opacity:.85;letter-spacing:.06em}
+.top .tools{margin-left:auto;display:flex;align-items:center;gap:.4rem;flex-wrap:wrap}
+.top .tools span{font-size:.8rem;opacity:.9;margin-right:.2rem}
+.tbtn{background:transparent;border:1.5px solid rgba(255,255,255,.55);color:inherit;border-radius:6px;padding:.25rem .6rem;cursor:pointer;font-weight:500;min-height:2.2rem}
+.tbtn[aria-pressed="true"]{background:var(--accent);color:var(--accent-ink);border-color:var(--accent)}
+.tbtn:hover{border-color:#fff}
+
+/* layout */
+main{max-width:1180px;margin:0 auto;padding:1rem clamp(.75rem,3vw,2rem) 3rem}
+.crumbs{display:flex;flex-wrap:wrap;gap:.35rem;align-items:center;font-size:.9rem;color:var(--ink2);margin:.2rem 0 1rem;padding:0;list-style:none}
+.crumbs li+li::before{content:"›";margin-right:.35rem;color:var(--ink2)}
+.view{display:none}.view[data-active]{display:block}
+.intro{display:grid;gap:.4rem;margin-bottom:1rem}
+.intro h1{font-size:1.65rem}
+.intro p{margin:0;color:var(--ink2)}
+.tag{display:inline-block;font-size:.75rem;font-weight:700;letter-spacing:.06em;padding:.1rem .55rem;border-radius:999px;background:var(--accent);color:var(--accent-ink);vertical-align:middle}
+.tag.grey{background:var(--unk-bg);color:var(--unk)}
+
+/* filters */
+.filters{display:flex;flex-wrap:wrap;gap:.5rem;align-items:center;margin:0 0 1rem}
+.filters .lbl{font-size:.85rem;font-weight:700;color:var(--ink2);margin-right:.2rem}
+.chip{border:1.5px solid var(--line);background:var(--surface);border-radius:999px;padding:.35rem .85rem;cursor:pointer;display:inline-flex;align-items:center;gap:.4rem;min-height:2.4rem}
+.chip[aria-pressed="true"]{background:var(--navy);color:var(--navy-ink);border-color:var(--navy)}
+.chip .ico{width:1.1em;height:1.1em}
+.chip.clear{border-style:dashed}
+
+/* home grid */
+.home{display:grid;gap:1.25rem;grid-template-columns:1fr}
+@media (min-width:900px){.home{grid-template-columns:3fr 2fr;align-items:start}}
+.mapwrap{background:var(--map-bg);border:1px solid var(--line);border-radius:10px;padding:.5rem;overflow:hidden}
+.mapwrap svg{width:100%;height:auto;display:block}
+.mapwrap .cap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:.3rem .8rem;font-size:.78rem;color:var(--ink2);padding:.35rem .35rem 0}
+.bld{cursor:pointer}
+.bld rect{fill:var(--map-bld);stroke:var(--ink);stroke-width:1.5;transition:filter .15s}
+.bld.off rect{fill:var(--map-off);stroke:var(--map-off-ink);stroke-dasharray:4 3}
+.bld.dim rect{fill:var(--map-off);opacity:.55}
+.bld text{fill:var(--map-bld-ink);font-family:"Zen Kaku Gothic New",sans-serif;pointer-events:none}
+.bld.off text{fill:var(--map-off-ink)}
+.bld:hover rect,.bld:focus rect{filter:brightness(1.08);stroke-width:3}
+.bld:focus{outline:none}
+.bld:focus-visible rect{stroke:var(--focus);stroke-width:4}
+.bld rect.badge{fill:var(--map-multi);stroke:none}
+.bld .badge+text{fill:#fff;font-weight:700}
+.road{fill:var(--map-road)}
+.mall{fill:var(--map-mall)}
+.lm{fill:var(--map-off);stroke:var(--map-off-ink);stroke-width:1}.lm-t{fill:var(--map-off-ink);font-family:"Noto Sans JP",sans-serif}
+.sky{stroke:var(--map-sky);stroke-width:9;stroke-linecap:round;opacity:.95}
+.bld rect.tag-aed{fill:var(--map-aed);stroke:var(--map-aed-ink);stroke-width:1.5}.bld rect.tag-ev{fill:var(--map-ev);stroke:#fff;stroke-width:1}
+.bld text.tag-t{fill:#fff;font-family:"Noto Sans JP",sans-serif}.bld text.tag-t.aed{fill:var(--map-aed-ink)}
+.pin-slope{fill:var(--map-slope);stroke:#fff;stroke-width:1.5}.pin-gate{fill:var(--map-gate);stroke:#000;stroke-width:1.5}.pin-bus{fill:var(--map-bus)}
+.pin-t{fill:#fff;font-family:"Noto Sans JP",sans-serif}.pin-t.slope{fill:var(--map-slope-ink)}.pin-t.gate{fill:var(--map-gate-ink)}
+.legend2{display:flex;flex-wrap:wrap;gap:.3rem .9rem;font-size:.8rem;color:var(--ink2);padding:.5rem .35rem 0}
+.legend2 span{display:inline-flex;align-items:center;gap:.35rem}
+.sw{display:inline-block;width:1.1rem;height:.8rem;border-radius:2px;border:1px solid var(--ink2)}
+.sw.bld{background:var(--map-bld)}.sw.lm{background:var(--map-off)}.sw.off{background:var(--map-off);border-style:dashed}.sw.multi{background:var(--map-multi);border:0}
+.sw.sky{background:var(--map-sky);border:0;height:.45rem;border-radius:999px}.sw.slope{background:var(--map-slope);border:0;border-radius:999px}
+.sw.cw{background:repeating-linear-gradient(0deg,var(--ink2) 0 2px,var(--map-road) 2px 4px)}.sw.aed{background:var(--map-aed);border:2px solid var(--map-aed-ink)}.sw.ev{background:var(--map-ev);border:1px solid var(--ink2)}
+.bfinfo{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:.9rem 1.1rem;margin-top:1rem}
+.bfinfo h2{font-size:1.05rem;margin-bottom:.4rem}
+.bfinfo ul{margin:0;padding-left:1.2rem;display:grid;gap:.3rem;font-size:.92rem}
+.bfinfo .src{font-size:.78rem;color:var(--ink2);margin:.6rem 0 0}
+.mlabel{fill:var(--ink2);font-size:11px;font-family:"Noto Sans JP",sans-serif}
+
+/* ---- motion (控えめ) ---- */
+@keyframes rise{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+@keyframes pop{from{opacity:0;transform:scale(.6)}to{opacity:1;transform:scale(1)}}
+@keyframes fadein{from{opacity:0}to{opacity:1}}
+@keyframes draw{to{stroke-dashoffset:0}}
+@keyframes zoomin{from{opacity:0;transform:scale(.92)}to{opacity:1;transform:scale(1)}}
+.view[data-active]{animation:rise .35s cubic-bezier(.2,.7,.2,1) both}
+.bld{transform-box:fill-box;transform-origin:center;transition:transform .2s ease}
+.bld:hover,.bld:focus-visible{transform:translateY(-2px)}
+.bcard,.cellbtn,.btn,.chip{transition:transform .18s ease,box-shadow .18s ease,border-color .18s ease,background-color .18s ease}
+.bcard:hover,.cellbtn:hover,.btn:hover{transform:translateY(-2px);box-shadow:var(--shadow)}
+.chip:hover{transform:translateY(-1px)}
+.fact{animation:pop .3s cubic-bezier(.2,.7,.2,1) both;animation-delay:var(--d,0s)}
+.gallery figure{animation:rise .4s cubic-bezier(.2,.7,.2,1) both;animation-delay:var(--d,0s)}
+.gallery button{transition:transform .2s ease,box-shadow .2s ease}
+.gallery button:hover{transform:scale(1.03);box-shadow:var(--shadow)}
+.gallery img{transition:transform .35s ease}
+.gallery button:hover img{transform:scale(1.06)}
+.lb[data-open] figure{animation:zoomin .25s ease-out both}
+.stats b{display:inline-block;min-width:1.2em;text-align:right}
+html[data-motion="off"] *,html[data-motion="off"] *::before,html[data-motion="off"] *::after{animation:none!important;transition:none!important}
+html[data-motion="off"] :is(.bld,.bcard,.cellbtn,.btn,.chip,.gallery button,.gallery img,.view){transform:none!important}
+@media (prefers-reduced-motion:reduce){html:not([data-motion="on"]) *,html:not([data-motion="on"]) *::before,html:not([data-motion="on"]) *::after{transition:none!important;animation:none!important}html:not([data-motion="on"]) :is(.bld,.bcard,.cellbtn,.btn,.chip,.gallery button,.gallery img,.view){transform:none!important}}
+
+/* building list */
+.blist{list-style:none;margin:0;padding:0;display:grid;gap:.5rem}
+.bcard{width:100%;text-align:left;background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:.7rem .9rem;display:grid;grid-template-columns:2.4rem 1fr auto;gap:.2rem .8rem;align-items:center;cursor:pointer}
+.bcard:hover{border-color:var(--navy)}
+.bcard .let{grid-row:span 2;width:2.4rem;height:2.4rem;border-radius:6px;background:var(--accent);color:var(--accent-ink);display:grid;place-items:center;font-family:"Zen Kaku Gothic New",sans-serif;font-weight:700;font-size:1.2rem}
+.bcard.off .let{background:var(--unk-bg);color:var(--unk)}
+.bcard.dim{opacity:.5}
+.bcard .nm{font-weight:700;font-family:"Zen Kaku Gothic New",sans-serif;font-size:1.05rem}
+.bcard .sub{grid-column:2/4;font-size:.85rem;color:var(--ink2);display:flex;flex-wrap:wrap;gap:.3rem .8rem}
+.bcard .arrow{color:var(--ink2);font-size:1.2rem}
+.pill{display:inline-flex;align-items:center;gap:.3rem;font-size:.8rem;font-weight:700;padding:.05rem .5rem;border-radius:4px;background:var(--surface2);color:var(--ink)}
+.pill.u{background:var(--map-multi);color:#fff}
+.pill svg{width:1em;height:1em}
+
+/* building view */
+.bhead{display:flex;flex-wrap:wrap;align-items:center;gap:.6rem 1rem;margin-bottom:.6rem}
+.bhead h1{font-size:1.6rem;display:flex;align-items:center;gap:.6rem}
+.bhead .let{width:2.6rem;height:2.6rem;border-radius:7px;background:var(--accent);color:var(--accent-ink);display:grid;place-items:center;font-weight:700;font-size:1.3rem}
+.notes{background:var(--surface2);border-left:4px solid var(--accent);padding:.7rem .9rem;border-radius:0 8px 8px 0;margin:0 0 1.1rem;font-size:.95rem}
+.notes h2{font-size:.9rem;letter-spacing:.06em;color:var(--ink2);margin-bottom:.25rem}
+.notes ul{margin:0;padding-left:1.2rem}
+.legend{display:flex;flex-wrap:wrap;gap:.4rem 1rem;font-size:.82rem;color:var(--ink2);margin:.4rem 0 .8rem}
+.legend span{display:inline-flex;align-items:center;gap:.3rem}
+.legend svg{width:1.1em;height:1.1em}
+.ftable-wrap{overflow-x:auto}
+table.ft{border-collapse:separate;border-spacing:0;width:100%;min-width:560px;background:var(--surface);border:1px solid var(--line);border-radius:10px;overflow:hidden}
+.ft th,.ft td{padding:.5rem .6rem;border-bottom:1px solid var(--line);vertical-align:top;text-align:left}
+.ft thead th{background:var(--surface2);font-family:"Zen Kaku Gothic New",sans-serif;font-size:.9rem}
+.ft th.fl{white-space:nowrap;font-family:"Zen Kaku Gothic New",sans-serif;font-size:1.05rem;width:5.5rem;background:var(--surface2);font-variant-numeric:tabular-nums}
+.ft tr:last-child td,.ft tr:last-child th{border-bottom:0}
+.cellbtn{width:100%;text-align:left;background:transparent;border:1.5px solid var(--line);border-radius:8px;padding:.45rem .55rem;cursor:pointer;display:grid;gap:.25rem;min-height:3.4rem}
+.cellbtn:hover{border-color:var(--navy);background:var(--surface2)}
+.cellbtn .t{font-weight:700;font-size:.92rem;display:flex;justify-content:space-between;gap:.4rem;align-items:baseline}
+.cellbtn .t small{font-weight:400;color:var(--ink2);font-size:.78rem}
+.cellbtn .icons{display:flex;flex-wrap:wrap;gap:.25rem}
+.mini{display:inline-flex;align-items:center;gap:.2rem;font-size:.74rem;padding:.02rem .38rem;border-radius:4px;border:1px solid transparent;line-height:1.5}
+.mini svg{width:1em;height:1em}
+.mini.ok{background:var(--ok-bg);color:var(--ok);border-color:transparent}
+.mini.no{background:var(--no-bg);color:var(--no)}
+.mini.part{background:var(--part-bg);color:var(--part)}
+.mini.unk{background:var(--unk-bg);color:var(--unk)}
+.none{color:var(--ink2);font-size:.85rem;padding:.45rem .2rem;display:block}
+.pending{color:var(--part);font-weight:700;font-size:.85rem;padding:.45rem .2rem;display:block}
+@media (max-width:700px){
+  .ftable-wrap{overflow:visible}
+  table.ft{min-width:0;display:block;border:0;background:transparent}
+  .ft thead{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+  .ft tbody,.ft tr,.ft td{display:block}
+  .ft tr{background:var(--surface);border:1px solid var(--line);border-radius:10px;margin-bottom:.6rem;overflow:hidden}
+  .ft th.fl{display:block;width:auto;border-bottom:1px solid var(--line)}
+  .ft td{border-bottom:0;padding:.35rem .6rem}
+  .ft td:last-child{padding-bottom:.6rem}
+  .ft .none{display:none}
+  .ft td .pending::before{content:"多目的トイレ："}
+}
+
+/* detail view */
+.dhead h1{font-size:1.55rem}
+.dhead .meta{display:flex;flex-wrap:wrap;gap:.4rem .9rem;font-size:.9rem;color:var(--ink2);margin-top:.3rem}
+.detail{display:grid;gap:1.2rem;grid-template-columns:1fr;margin-top:1rem;align-items:start}
+@media (min-width:860px){.detail{grid-template-columns:1fr 1fr}}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:1rem 1.1rem}
+.card h2{font-size:1.05rem;margin-bottom:.6rem;display:flex;align-items:center;gap:.5rem}
+.card h2 .n{font-size:.75rem;font-weight:500;color:var(--ink2)}
+.facts{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(13rem,1fr));gap:.45rem}
+.fact{display:grid;grid-template-columns:2.1rem 1fr;gap:.55rem;align-items:center;padding:.5rem .6rem;border-radius:8px;border:1px solid var(--line);background:var(--ground)}
+.fact .st{width:2.1rem;height:2.1rem;border-radius:6px;display:grid;place-items:center}
+.fact .st svg{width:1.35rem;height:1.35rem}
+.fact.ok .st{background:var(--ok-bg);color:var(--ok)}.fact.no .st{background:var(--no-bg);color:var(--no)}.fact.part .st{background:var(--part-bg);color:var(--part)}.fact.unk .st{background:var(--unk-bg);color:var(--unk)}
+.fact .k,.fact .v{display:block}
+.fact .k{font-size:.8rem;color:var(--ink2);line-height:1.3}
+.fact .v{font-weight:700;line-height:1.3;font-variant-numeric:tabular-nums}
+.fact .v small{font-weight:400;color:var(--ink2);display:block;font-size:.78rem}
+.measure{display:grid;grid-template-columns:repeat(auto-fit,minmax(9rem,1fr));gap:.6rem;margin-bottom:.9rem}
+.measure div{background:var(--surface2);border-radius:8px;padding:.55rem .7rem}
+.measure .k{font-size:.78rem;color:var(--ink2)}
+.measure .v{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:700;font-size:1.35rem;font-variant-numeric:tabular-nums;line-height:1.2}
+.measure .v small{font-size:.8rem;font-weight:500;color:var(--ink2)}
+.gallery{display:grid;grid-template-columns:repeat(auto-fill,minmax(9.5rem,1fr));gap:.6rem}
+.gallery figure{margin:0}
+.gallery button{padding:0;border:1px solid var(--line);border-radius:8px;overflow:hidden;background:var(--surface2);cursor:pointer;width:100%;aspect-ratio:4/3;display:block}
+.gallery img{width:100%;height:100%;object-fit:cover;display:block}
+.gallery figcaption{font-size:.78rem;color:var(--ink2);margin-top:.25rem;line-height:1.4}
+.rep{background:var(--part-bg);color:var(--part);font-size:.82rem;padding:.5rem .7rem;border-radius:8px;margin-bottom:.7rem}
+.remarks{font-size:.92rem}
+.remarks dt{font-weight:700;font-size:.82rem;color:var(--ink2);margin-top:.5rem}
+.remarks dd{margin:0}
+.nav-prev-next{display:flex;flex-wrap:wrap;gap:.5rem;margin-top:1.2rem}
+.btn{display:inline-flex;align-items:center;gap:.4rem;border:1.5px solid var(--line);background:var(--surface);border-radius:8px;padding:.5rem .9rem;text-decoration:none;color:var(--ink);cursor:pointer;min-height:2.6rem}
+.btn:hover{border-color:var(--navy)}
+.btn.primary{background:var(--navy);color:var(--navy-ink);border-color:var(--navy)}
+
+/* lightbox */
+.lb{position:fixed;inset:0;background:rgba(10,10,10,.88);display:none;place-items:center;z-index:50;padding:1rem}
+.lb[data-open]{display:grid}
+.lb img{max-width:min(96vw,1200px);max-height:80vh;border-radius:6px;background:#000}
+.lb figcaption{color:#fff;text-align:center;margin-top:.6rem;font-size:.95rem}
+.lb .close{position:absolute;top:1rem;right:1rem;background:#fff;color:#111;border:0;border-radius:999px;width:2.8rem;height:2.8rem;font-size:1.4rem;cursor:pointer}
+
+footer{border-top:1px solid var(--line);margin-top:2rem;padding:1.2rem clamp(.75rem,3vw,2rem);font-size:.82rem;color:var(--ink2)}
+footer .in{max-width:1180px;margin:0 auto;display:grid;gap:.3rem}
+.about{background:var(--surface2);border:1px solid var(--line);border-radius:10px;padding:.9rem 1.1rem;margin-top:.75rem;font-size:.9rem}
+.about h2{font-size:1rem;margin-bottom:.4rem}
+.about p{margin:.2rem 0}
+.stats{display:flex;flex-wrap:wrap;gap:.5rem 1.4rem;font-size:.88rem;color:var(--ink2);margin:.2rem 0 .9rem;font-variant-numeric:tabular-nums}
+.stats b{color:var(--ink);font-family:"Zen Kaku Gothic New",sans-serif;font-size:1.1rem}
+</style>
+
+<a class="skip" href="#main">本文へ移動</a>
+<header class="top">
+  <a class="brand" href="#/" aria-label="渋谷キャンパスUDマップ トップへ">
+    <span class="mark" aria-hidden="true">UD</span>
+    <span><b>渋谷キャンパス UDマップ</b><small>國學院大學 ユニバーサルデザインマップ</small></span>
+  </a>
+  <div class="tools" role="group" aria-label="表示設定">
+    <button class="tbtn" id="motion" aria-pressed="true">動き: オン</button>
+    <span style="margin-left:.4rem">文字サイズ</span>
+    <button class="tbtn" data-fs="1" aria-pressed="true">標準</button>
+    <button class="tbtn" data-fs="1.2" aria-pressed="false">大</button>
+    <button class="tbtn" data-fs="1.45" aria-pressed="false">特大</button>
+  </div>
+</header>
+
+<main id="main" tabindex="-1">
+  <nav aria-label="現在地"><ol class="crumbs" id="crumbs"></ol></nav>
+  <div aria-live="polite" class="sr" id="live"></div>
+
+  <!-- HOME -->
+  <section class="view" id="v-home" aria-labelledby="h-home">
+    <div class="intro">
+      <h1 id="h-home">渋谷キャンパスのトイレ設備マップ</h1>
+      <p>建物を選ぶと、階ごとのトイレと設備（多目的トイレ・手すり・オストメイト・ベビーシート・緊急呼び出しボタンなど）を写真つきで確認できます。障がい学生支援に関わる学生サポーターと教員が実際に歩いて調べた結果（2026年6月時点）をもとにしています。</p>
+    </div>
+    <div class="stats" id="stats"></div>
+    <div class="filters" role="group" aria-label="設備でしぼり込む" id="filters">
+      <span class="lbl">設備でしぼり込む</span>
+    </div>
+    <div class="home">
+      <div>
+        <div class="mapwrap" id="mapwrap"></div>
+        <section class="bfinfo" aria-labelledby="bf-h"><h2 id="bf-h">キャンパス内の移動・バリアフリー情報</h2><ul id="bflist"></ul></section>
+      </div>
+      <div>
+        <h2 class="sr">建物一覧</h2>
+        <ul class="blist" id="blist"></ul>
+        <div class="about">
+      <h2>このマップについて</h2>
+      <p>掲載しているのは学生サポーターによる巡検（現地調査、2026年6月時点）の記録です。設備は改修等で変わることがあります。「情報なし」は調査票に記録がなかった項目、「調査中」は立ち入りができず未調査の場所です。</p>
+      <p>同じ構造のトイレでは、別の階で撮影した写真を「代表写真」として掲載している場合があります。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BUILDING -->
+  <section class="view" id="v-bld" aria-labelledby="h-bld"></section>
+
+  <!-- DETAIL -->
+  <section class="view" id="v-toilet" aria-labelledby="h-toilet"></section>
+</main>
+
+<footer><div class="in">
+  <div>國學院大學 障がい学生支援 ユニバーサルデザインマップ プロジェクト（学生サポーター＋教員）／ 調査：学生サポーターによる巡検（2026年6月時点）</div>
+  <div>掲載内容は調査時点の情報です。設備は改修等により変わることがあります。</div>
+</div></footer>
+
+<div class="lb" id="lb" role="dialog" aria-modal="true" aria-label="写真の拡大表示">
+  <button class="close" id="lbclose" aria-label="閉じる">×</button>
+  <figure style="margin:0"><img id="lbimg" alt=""><figcaption id="lbcap"></figcaption></figure>
+</div>
+
+<script>
+const DATA = {"campus":"渋谷","buildings":[{"code":"AMC","letter":"A","name":"学術メディアセンター","short":"AMC","official":"Academic Media Center","status":"surveyed","pos":{"x":70,"y":190,"w":130,"h":250},"notes":["正面入口側（登り坂側）にスロープあり。1階にAED、エレベーター・エスカレーターあり","正門前（スカイウォーク下）と登り坂の交差点に横断歩道あり。2階のスカイウォークで道路を渡らずに3号館側へ行けます","バス停は建物側の歩道にあります","男子トイレの手すりは一部の個室のみ。点字はウォシュレット部分のみ"],"toilets":[{"id":"AMC-1F-M1","floor":"1F","type":"男性","detail":"","hours":"","unisex":"","step":"なし","step_h":0,"door":"引き戸","w_out":null,"w_in":null,"f":{"handrail":"一部","sanitary":"なし","baby":"なし","callbtn":"なし","voice":"なし","braille":"一部","ostomate":"","pictogram":""},"notes":{"手すり":"あり(1/4)","点字案内":"△"},"remarks":"","rep":false,"pending":false,"photos":[{"cat":"toilet","alt":"学術メディアセンター(AMC) 1階 男性トイレの内部（小便器・個室と手すり）","cap":"トイレ内部","thumb":"photos/thumb/AMC-1F-M1_toilet1.jpg","full":"photos/web/AMC-1F-M1_toilet1.jpg"}]},{"id":"AMC-1F-F1","floor":"1F","type":"女性","detail":"","hours":"","unisex":"","step":"なし","step_h":0,"door":"開き戸(押戸)","w_out":null,"w_in":null,"f":{"handrail":"一部","sanitary":"あり","baby":"なし","callbtn":"あり","voice":"なし","braille":"一部","ostomate":"","pictogram":""},"notes":{"手すり":"有り(手前1のみ)","点字案内":"△(ウォシュレットのみ)"},"remarks":"","rep":false,"pending":false,"photos":[{"cat":"toilet","alt":"学術メディアセンター(AMC) 1階 女性トイレの個室内部（便器と手すり）","cap":"トイレ内部","thumb":"photos/thumb/AMC-1F-F1_toilet1.jpg","full":"photos/web/AMC-1F-F1_toilet1.jpg"},{"cat":"door","alt":"学術メディアセンター(AMC) 1階 女性トイレの入口ドア","cap":"入口ドア","thumb":"photos/thumb/AMC-1F-F1_door1.jpg","full":"photos/web/AMC-1F-F1_door1.jpg"}]},{"id":"AMC-1F-U1","floor":"1F","type":"多目的","detail":"","hours":"","unisex":"あり","step":"なし","step_h":0,"door":"回転引き戸","w_out":null,"w_in":null,"f":{"handrail":"あり","sanitary":"あり","baby":"あり","callbtn":"あり","voice":"なし","braille":"一部","ostomate":"","pictogram":""},"notes":{"点字案内":"△"},"remarks":"","rep":false,"pending":false,"photos":[{"cat":"toilet","alt":"学術メディアセンター(AMC) 1階 多目的トイレの内部。便器、手すり、洗面台などの配置","cap":"トイレ内部","thumb":"photos/thumb/AMC-1F-U1_toilet1.jpg","full":"photos/web/AMC-1F-U1_toilet1.jpg"}]},{"id":"AMC-2F-M1","floor":"2F","type":"男性","detail":"","hours":"","unisex":"","step":"なし","step_h":0,"door":"引き戸","w_out":null,"w_in":null,"f":{"handrail":"一部","sanitary":"なし","baby":"なし","callbtn":"なし","voice":"なし","braille":"一部","ostomate":"","pictogram":""},"notes":{"手すり":"あり(1/4)","点字案内":"△"},"remarks":"","rep":false,"pending":false,"photos":[]},{"id":"AMC-2F-F1","floor":"2F","type":"女性","detail":"","hours":"","unisex":"なし","step":"なし","step_h":0,"door":"開き戸(押戸)","w_out":null,"w_in":null,"f":{"handrail":"あり","sanitary":"あり","baby":"なし","callbtn":"あり","voice":"なし","braille":"一部","ostomate":"","pictogram":""},"notes":{"点字案内":"△"},"remarks":"","rep":false,"pending":false,"photos":[{"cat":"toilet","alt":"学術メディアセンター(AMC) 2階 女性トイレの個室内部（便器と手すり）","cap":"トイレ内部","thumb":"photos/thumb/AMC-2F-F1_toilet1.jpg","full":"photos/web/AMC-2F-F1_toilet1.jpg"},{"cat":"toilet","alt":"学術メディアセンター(AMC) 2階 女性トイレの個室内部（便器と手すり）","cap":"トイレ内部","thumb":"photos/thumb/AMC-2F-F1_toilet2.jpg","full":"photos/web/AMC-2F-F1_toilet2.jpg"}]},{"id":"AMC-3F-M1","floor":"3F","type":"男性","detail":"","hours":"","unisex":"","step":"なし","step_h":0,"door":"引き戸","w_out":null,"w_in":null,"f":{"handrail":"一部","sanitary":"なし","baby":"なし","callbtn":"なし","voice":"なし","braille":"一部","ostomate":"","pictogram":""},"notes":{"手すり":"あり(1/4)","点字案内":"△"},"remarks":"","rep":false,"pending":false,"photos":[]},{"id":"AMC-3F-F1","floor":"3F","type":"女性","detail":"","hours":"","unisex":"なし","step":"なし","step_h":0,"door":"開き戸(押戸)","w_out":null,"w_in":null,"f":{"handrail":"あり","sanitary":"あり","baby":"なし","callbtn":"あり","voice":"なし","braille":"一部","ostomate":"","pictogram":""},"notes":{"点字案内":"△(ウォシュレットのみ)"},"remarks":"","rep":false,"pending":false,"photos":[{"cat":"toilet","alt":"学術メディアセンター(AMC) 3階 女性トイレの個室内部（便器と手すり）","cap":"トイレ内部","thumb":"photos/thumb/AMC-3F-F1_toilet1.jpg","full":"photos/web/AMC-3F-F1_toilet1.jpg"},{"cat":"toilet","alt":"学術メディアセンター(AMC) 3階 女性トイレの個室内部（便器と手すり）","cap":"トイレ内部","thumb":"photos/thumb/AMC-3F-F1_toilet2.jpg","full":"photos/web/AMC-3F-F1_toilet2.jpg"}]},{"id":"AMC-4F-M1","floor":"4F","type":"男性","detail":"","hours":"","unisex":"","step":"なし","step_h":0,"door":"引き戸","w_out":null,"w_in":null,"f":{"handrail":"一部","sanitary":"なし","baby":"なし","callbtn":"なし","voice":"なし","braille":"一部","ostomate":"","pictogram":""},"notes":{"手すり":"あり(1/3)","点字案内":"△"},"remarks":"","rep":false,"pending":false,"photos":[{"cat":"toilet","alt":"学術メディアセンター(AMC) 4階 男性トイレの内部（小便器・個室と手すり）","cap":"トイレ内部","thumb":"photos/thumb/AMC-4F-M1_toilet1.jpg","full":"photos/web/AMC-4F-M1_toilet1.jpg"}]},{"id":"AMC-4F-F1","floor":"4F","type":"女性","detail":"","hours":"","unisex":"","step":"なし","step_h":0,"door":"開き戸(押戸)","w_out":null,"w_in":null,"f":{"handrail":"あり","sanitary":"あり","baby":"なし","callbtn":"あり","voice":"なし","braille":"一部","ostomate":"","pictogram":""},"notes":{"点字案内":"△"},"remarks":"","rep":false,"pending":false,"photos":[{"cat":"toilet","alt":"学術メディアセンター(AMC) 4階 女性トイレの個室内部（便器と手すり）","cap":"トイレ内部","thumb":"photos/thumb/AMC-4F-F1_toilet1.jpg","full":"photos/web/AMC-4F-F1_toilet1.jpg"},{"cat":"door","alt":"学術メディアセンター(AMC) 4階 女性トイレの入口ドア","cap":"入口ドア","thumb":"photos/thumb/AMC-4F-F1_door1.jpg","full":"photos/web/AMC-4F-F1_door1.jpg"}]}]},{"code":"SHR","letter":"B","name":"神殿","short":"神殿","official":"","status":"out","pos":{"x":325,"y":380,"w":65,"h":80},"notes":[],"toilets":[]},{"code":"WKT","letter":"C","name":"若木タワー","short":"若木タワー","official":"","status":"out","pos":{"x":398,"y":250,"w":95,"h":150},"notes":[],"toilets":[]},{"code":"S3","letter":"D","name":"3号館","short":"3号館","official":"Building #3","status":"surveyed","pos":{"x":307,"y":90,"w":186,"h":100},"notes":["1階キャンパスモール側にスロープあり","スカイウォーク（2階）で学術メディアセンター・若木タワー・2号館と接続","5階エレベーターの幅は90cm","5階の渡り廊下は渡りにくい場合があります","点字ブロックは食堂「和」まで続きます。女子トイレの点字はウォシュレットのみ（全階共通）","女子トイレは手前の個室のみ手すりあり（全階共通）","5階女子トイレ付近にスロープあり"],"toilets":[{"id":"S3-B1-M1","floor":"B1","type":"男性","detail":"","hours":"","unisex":"","step":"なし","step_h":0,"door":"引き戸","w_out":null,"w_in":null,"f":{"handrail":"一部","sanitary":"なし","baby":"なし","callbtn":"なし","voice":"なし","braille":"一部","ostomate":"","pictogram":""},"notes":{"手すり":"あり(1/3)","点字案内":"△"},"remarks":"","rep":false,"pending":false,"photos":[]},{"id":"S3-B1-F1","floor":"B1","type":"女性","detail":"","hours":"9:00~21:00","unisex":"なし","step":"なし","step_h":0,"door":"開き戸(押戸)","w_out":null,"w_in":null,"f":{"handrail":"あり","sanitary":"あり","baby":"なし","callbtn":"あり","voice":"なし","braille":"あり","ostomate":"","pictogram":""},"notes":{},"remarks":"手前の個室のみ手すりあり(全ての階の女子トイレで共通)","rep":false,"pending":false,"photos":[{"cat":"toilet","alt":"3号館 地下1階 女性トイレの個室内部（便器と手すり）","cap":"トイレ内部","thumb":"photos/thumb/S3-B1-F1_toilet1.jpg","full":"photos/web/S3-B1-F1_toilet1.jpg"},{"cat":"door","alt":"3号館 地下1階 女性トイレの入口ドア","cap":"入口ドア","thumb":"photos/thumb/S3-B1-F1_door1.jpg","full":"photos/web/S3-B1-F1_door1.jpg"}]},{"id":"S3-B1-U1","floor":"B1","type":"多目的","detail":"","hours":"","unisex":"あり","step":"なし","step_h":0,"door":"回転引き戸","w_out":null,"w_in":null,"f":{"handrail":"あり","sanitary":"あり","baby":"なし","callbtn":"あり","voice":"なし","braille":"一部","ostomate":"","pictogram":""},"notes":{"点字案内":"△"},"remarks":"","rep":false,"pending":false,"photos":[{"cat":"toilet","alt":"3号館 地下1階 多目的トイレの内部。便器、手すり、洗面台などの配置","cap":"トイレ内部","thumb":"photos/thumb/S3-B1-U1_toilet1.jpg","full":"photos/web/S3-B1-U1_toilet1.jpg"}]},{"id":"S3-1F-M1","floor":"1F","type":"男性","detail":"","hours":"","unisex":"","step":"なし","step_h":0,"door":"引き戸","w_out":null,"w_in":null,"f":{"handrail":"一部","sanitary":"なし","baby":"なし","callbtn":"なし","voice":"なし","braille":"一部","ostomate":"","pictogram":""},"notes":{"手すり":"あり(1/3)","点字案内":"△"},"remarks":"","rep":false,"pending":false,"photos":[{"cat":"toilet","alt":"3号館 1階 男性トイレの内部（小便器・個室と手すり）","cap":"トイレ内部","thumb":"photos/thumb/S3-1F-M1_toilet1.jpg","full":"photos/web/S3-1F-M1_toilet1.jpg"}]},{"id":"S3-1F-F1","floor":"1F","type":"女性","detail":"","hours":"9:00~21:00","unisex":"なし","step":"なし","step_h":0,"door":"開き戸(押戸)","w_out":null,"w_in":null,"f":{"handrail":"あり","sanitary":"あり","baby":"なし","callbtn":"あり","voice":"なし","braille":"あり","ostomate":"","pictogram":""},"notes":{},"remarks":"","rep":false,"pending":false,"photos":[{"cat":"toilet","alt":"3号館 1階 女性トイレの個室内部（便器と手すり）","cap":"トイレ内部","thumb":"photos/thumb/S3-1F-F1_toilet1.jpg","full":"photos/web/S3-1F-F1_toilet1.jpg"},{"cat":"door","alt":"3号館 1階 女性トイレの入口ドア","cap":"入口ドア","thumb":"photos/thumb/S3-1F-F1_door1.jpg","full":"photos/web/S3-1F-F1_door1.jpg"}]},{"id":"S3-1F-U1","floor":"1F","type":"多目的","detail":"","hours":"","unisex":"あり","step":"なし","step_h":0,"door":"回転引き戸","w_out":null,"w_in":null,"f":{"handrail":"あり","sanitary":"あり","baby":"なし","callbtn":"あり","voice":"なし","braille":"一部","ostomate":"","pictogram":""},"notes":{"点字案内":"△"},"remarks":"","rep":false,"pending":false,"photos":[{"cat":"toilet","alt":"3号館 1階 多目的トイレの内部。便器、手すり、洗面台などの配置","cap":"トイレ内部","thumb":"photos/thumb/S3-1F-U1_toilet1.jpg","full":"photos/web/S3-1F-U1_toilet1.jpg"}]},{"id":"S3-2F-M1","floor":"2F","type":"男性","detail":"","hours":"","unisex":"","step":"なし","step_h":0,"door":"引き戸","w_out":null,"w_in":null,"f":{"handrail":"一部","sanitary":"なし","baby":"なし","callbtn":"なし","voice":"なし","braille":"一部","ostomate":"","pictogram":""},"notes":{"手すり":"あり(1/3)","点字案内":"△"},"remarks":"","rep":true,"pending":false,"photos":[{"cat":"toilet","alt":"3号館 2階 男性トイレの内部（小便器・個室と手すり）","cap":"トイレ内部","thumb":"photos/thumb/S3-2F-M1_toilet1.jpg","full":"photos/web/S3-2F-M1_toilet1.jpg"}]},{"id":"S3-2F-F1","floor":"2F","type":"女性","detail":"","hours":"9:00~21:00","unisex":"なし","step":"なし","step_h":0,"door":"開き戸(押戸)","w_out":null,"w_in":null,"f":{"handrail":"あり","sanitary":"あり","baby":"なし","callbtn":"あり","voice":"なし","braille":"あり","ostomate":"","pictogram":""},"notes":{},"remarks":"","rep":false,"pending":false,"photos":[{"cat":"toilet","alt":"3号館 2階 女性トイレの個室内部（便器と手すり）","cap":"トイレ内部","thumb":"photos/thumb/S3-2F-F1_toilet1.jpg","full":"photos/web/S3-2F-F1_toilet1.jpg"},{"cat":"door","alt":"3号館 2階 女性トイレの入口ドア","cap":"入口ドア","thumb":"photos/thumb/S3-2F-F1_door1.jpg","full":"photos/web/S3-2F-F1_door1.jpg"}]},{"id":"S3-3F-M1","floor":"3F","type":"男性","detail":"","hours":"","unisex":"","step":"なし","step_h":0,"door":"引き戸","w_out":null,"w_in":null,"f":{"handrail":"一部","sanitary":"なし","baby":"なし","callbtn":"なし","voice":"なし","braille":"一部","ostomate":"","pictogram":""},"notes":{"手すり":"あり(1/3)","点字案内":"△"},"remarks":"","rep":false,"pending":false,"photos":[{"cat":"toilet","alt":"3号館 3階 男性トイレの内部（小便器・個室と手すり）","cap":"トイレ内部","thumb":"photos/thumb/S3-3F-M1_toilet1.jpg","full":"photos/web/S3-3F-M1_toilet1.jpg"}]},{"id":"S3-3F-F1","floor":"3F","type":"女性","detail":"","hours":"9:00~21:00","unisex":"なし","step":"なし","step_h":0,"door":"開き戸(押戸)","w_out":null,"w_in":null,"f":{"handrail":"あり","sanitary":"あり","baby":"なし","callbtn":"あり","voice":"なし","braille":"あり","ostomate":"","pictogram":""},"notes":{},"remarks":"","rep":true,"pending":false,"photos":[{"cat":"toilet","alt":"3号館 3階 女性トイレの個室内部（便器と手すり）","cap":"トイレ内部","thumb":"photos/thumb/S3-3F-F1_toilet1.jpg","full":"photos/web/S3-3F-F1_toilet1.jpg"},{"cat":"door","alt":"3号館 3階 女性トイレの入口ドア","cap":"入口ドア","thumb":"photos/thumb/S3-3F-F1_door1.jpg","full":"photos/web/S3-3F-F1_door1.jpg"}]},{"id":"S3-4F-M1","floor":"4F","type":"男性","detail":"","hours":"","unisex":"","step":"なし","step_h":0,"door":"引き戸","w_out":null,"w_in":null,"f":{"handrail":"一部","sanitary":"なし","baby":"なし","callbtn":"なし","voice":"なし","braille":"一部","ostomate":"","pictogram":""},"notes":{"手すり":"あり(1/3)","点字案内":"△"},"remarks":"","rep":true,"pending":false,"photos":[{"cat":"toilet","alt":"3号館 4階 男性トイレの内部（小便器・個室と手すり）","cap":"トイレ内部","thumb":"photos/thumb/S3-4F-M1_toilet1.jpg","full":"photos/web/S3-4F-M1_toilet1.jpg"}]},{"id":"S3-4F-F1","floor":"4F","type":"女性","detail":"","hours":"9:00~21:00","unisex":"なし","step":"なし","step_h":0,"door":"開き戸(押戸)","w_out":null,"w_in":null,"f":{"handrail":"あり","sanitary":"あり","baby":"なし","callbtn":"あり","voice":"なし","braille":"あり","ostomate":"","pictogram":""},"notes":{},"remarks":"","rep":true,"pending":false,"photos":[{"cat":"toilet","alt":"3号館 4階 女性トイレの個室内部（便器と手すり）","cap":"トイレ内部","thumb":"photos/thumb/S3-4F-F1_toilet1.jpg","full":"photos/web/S3-4F-F1_toilet1.jpg"},{"cat":"door","alt":"3号館 4階 女性トイレの入口ドア","cap":"入口ドア","thumb":"photos/thumb/S3-4F-F1_door1.jpg","full":"photos/web/S3-4F-F1_door1.jpg"}]},{"id":"S3-5F-M1","floor":"5F","type":"男性","detail":"","hours":"","unisex":"","step":"なし","step_h":0,"door":"引き戸","w_out":null,"w_in":null,"f":{"handrail":"一部","sanitary":"なし","baby":"なし","callbtn":"なし","voice":"なし","braille":"一部","ostomate":"","pictogram":""},"notes":{"手すり":"あり(1/2)","点字案内":"△"},"remarks":"","rep":true,"pending":false,"photos":[{"cat":"toilet","alt":"3号館 5階 男性トイレの内部（小便器・個室と手すり）","cap":"トイレ内部","thumb":"photos/thumb/S3-5F-M1_toilet1.jpg","full":"photos/web/S3-5F-M1_toilet1.jpg"}]},{"id":"S3-5F-F1","floor":"5F","type":"女性","detail":"","hours":"9:00~21:00","unisex":"なし","step":"なし","step_h":0,"door":"開き戸(押戸)","w_out":null,"w_in":null,"f":{"handrail":"あり","sanitary":"あり","baby":"なし","callbtn":"あり","voice":"なし","braille":"あり","ostomate":"","pictogram":""},"notes":{},"remarks":"スロープあり","rep":false,"pending":false,"photos":[{"cat":"toilet","alt":"3号館 5階 女性トイレの個室内部（便器と手すり）","cap":"トイレ内部","thumb":"photos/thumb/S3-5F-F1_toilet1.jpg","full":"photos/web/S3-5F-F1_toilet1.jpg"},{"cat":"toilet","alt":"3号館 5階 女性トイレの個室内部（便器と手すり）","cap":"トイレ内部","thumb":"photos/thumb/S3-5F-F1_toilet2.jpg","full":"photos/web/S3-5F-F1_toilet2.jpg"},{"cat":"door","alt":"3号館 5階 女性トイレの入口ドア","cap":"入口ドア","thumb":"photos/thumb/S3-5F-F1_door1.jpg","full":"photos/web/S3-5F-F1_door1.jpg"}]}]},{"code":"S2","letter":"E","name":"2号館","short":"2号館","official":"120周年記念 2号館","status":"surveyed","pos":{"x":510,"y":30,"w":120,"h":160},"notes":["スカイウォーク（2階）で3号館・1号館と接続","5階エレベーターの幅は90cm","点字は入口ドアとウォシュレットにあり（全階共通）。点字ブロックは食堂「和」まで続きます","手すりは手前の個室のみ（全階共通）","利用時間 9:00〜21:00"],"toilets":[{"id":"S2-1F-U1","floor":"1F","type":"多目的","detail":"2101教室側","hours":"9:00~21:00","unisex":"なし","step":"なし","step_h":0,"door":"回転引き戸","w_out":null,"w_in":null,"f":{"handrail":"あり","sanitary":"あり","baby":"あり","callbtn":"あり","voice":"なし","braille":"あり","ostomate":"","pictogram":""},"notes":{},"remarks":"","rep":false,"pending":false,"photos":[{"cat":"toilet","alt":"2号館 1階 多目的トイレの内部。便器、手すり、洗面台などの配置","cap":"トイレ内部","thumb":"photos/thumb/S2-1F-U1_toilet1.jpg","full":"photos/web/S2-1F-U1_toilet1.jpg"},{"cat":"door","alt":"2号館 1階 多目的トイレの入口ドア","cap":"入口ドア","thumb":"photos/thumb/S2-1F-U1_door1.jpg","full":"photos/web/S2-1F-U1_door1.jpg"}]},{"id":"S2-1F-M1","floor":"1F","type":"男性","detail":"2104教室側","hours":"9:00~21:00","unisex":"なし","step":"なし","step_h":0,"door":"引き戸","w_out":null,"w_in":null,"f":{"handrail":"あり","sanitary":"なし","baby":"なし","callbtn":"なし","voice":"なし","braille":"あり","ostomate":"","pictogram":""},"notes":{},"remarks":"","rep":false,"pending":false,"photos":[{"cat":"toilet","alt":"2号館 1階 男性トイレの内部（小便器・個室と手すり）","cap":"トイレ内部","thumb":"photos/thumb/S2-1F-M1_toilet1.jpg","full":"photos/web/S2-1F-M1_toilet1.jpg"}]},{"id":"S2-1F-F1","floor":"1F","type":"女性","detail":"2104教室側","hours":"9:00~21:00","unisex":"なし","step":"なし","step_h":0,"door":"開き戸(押戸)","w_out":null,"w_in":null,"f":{"handrail":"あり","sanitary":"あり","baby":"なし","callbtn":"あり","voice":"なし","braille":"あり","ostomate":"","pictogram":""},"notes":{},"remarks":"","rep":false,"pending":false,"photos":[{"cat":"toilet","alt":"2号館 1階 女性トイレの個室内部（便器と手すり）","cap":"トイレ内部","thumb":"photos/thumb/S2-1F-F1_toilet1.jpg","full":"photos/web/S2-1F-F1_toilet1.jpg"},{"cat":"door","alt":"2号館 1階 女性トイレの入口ドア","cap":"入口ドア","thumb":"photos/thumb/S2-1F-F1_door1.jpg","full":"photos/web/S2-1F-F1_door1.jpg"}]},{"id":"S2-1F-M2","floor":"1F","type":"男性","detail":"百周年記念館側","hours":"9:00~21:00","unisex":"なし","step":"なし","step_h":0,"door":"引き戸","w_out":null,"w_in":null,"f":{"handrail":"あり","sanitary":"なし","baby":"なし","callbtn":"なし","voice":"なし","braille":"あり","ostomate":"","pictogram":""},"notes":{},"remarks":"","rep":false,"pending":false,"photos":[]},{"id":"S2-1F-F2","floor":"1F","type":"女性","detail":"百周年記念館側","hours":"9:00~21:00","unisex":"なし","step":"なし","step_h":0,"door":"開き戸(押戸)","w_out":null,"w_in":null,"f":{"handrail":"あり","sanitary":"あり","baby":"なし","callbtn":"あり","voice":"なし","braille":"あり","ostomate":"","pictogram":""},"notes":{},"remarks":"","rep":false,"pending":false,"photos":[{"cat":"toilet","alt":"2号館 1階 女性トイレの個室内部（便器と手すり）","cap":"トイレ内部","thumb":"photos/thumb/S2-1F-F2_toilet1.jpg","full":"photos/web/S2-1F-F2_toilet1.jpg"},{"cat":"door","alt":"2号館 1階 女性トイレの入口ドア","cap":"入口ドア","thumb":"photos/thumb/S2-1F-F2_door1.jpg","full":"photos/web/S2-1F-F2_door1.jpg"}]},{"id":"S2-2F-M1","floor":"2F","type":"男性","detail":"","hours":"9:00~21:00","unisex":"なし","step":"なし","step_h":0,"door":"引き戸","w_out":null,"w_in":null,"f":{"handrail":"あり","sanitary":"なし","baby":"なし","callbtn":"なし","voice":"なし","braille":"あり","ostomate":"","pictogram":""},"notes":{},"remarks":"","rep":false,"pending":false,"photos":[{"cat":"toilet","alt":"2号館 2階 男性トイレの内部（小便器・個室と手すり）","cap":"トイレ内部","thumb":"photos/thumb/S2-2F-M1_toilet1.jpg","full":"photos/web/S2-2F-M1_toilet1.jpg"}]},{"id":"S2-2F-F1","floor":"2F","type":"女性","detail":"","hours":"9:00~21:00","unisex":"なし","step":"なし","step_h":0,"door":"開き戸(押戸)","w_out":null,"w_in":null,"f":{"handrail":"あり","sanitary":"あり","baby":"なし","callbtn":"あり","voice":"なし","braille":"あり","ostomate":"","pictogram":""},"notes":{},"remarks":"","rep":true,"pending":false,"photos":[{"cat":"toilet","alt":"2号館 2階 女性トイレの個室内部（便器と手すり）","cap":"トイレ内部","thumb":"photos/thumb/S2-2F-F1_toilet1.jpg","full":"photos/web/S2-2F-F1_toilet1.jpg"},{"cat":"door","alt":"2号館 2階 女性トイレの入口ドア","cap":"入口ドア","thumb":"photos/thumb/S2-2F-F1_door1.jpg","full":"photos/web/S2-2F-F1_door1.jpg"}]},{"id":"S2-3F-M1","floor":"3F","type":"男性","detail":"","hours":"9:00~21:00","unisex":"なし","step":"なし","step_h":0,"door":"引き戸","w_out":null,"w_in":null,"f":{"handrail":"あり","sanitary":"なし","baby":"なし","callbtn":"なし","voice":"なし","braille":"あり","ostomate":"","pictogram":""},"notes":{},"remarks":"","rep":true,"pending":false,"photos":[{"cat":"toilet","alt":"2号館 3階 男性トイレの内部（小便器・個室と手すり）","cap":"トイレ内部","thumb":"photos/thumb/S2-3F-M1_toilet1.jpg","full":"photos/web/S2-3F-M1_toilet1.jpg"}]},{"id":"S2-3F-F1","floor":"3F","type":"女性","detail":"","hours":"9:00~21:00","unisex":"なし","step":"なし","step_h":0,"door":"開き戸(押戸)","w_out":null,"w_in":null,"f":{"handrail":"あり","sanitary":"あり","baby":"なし","callbtn":"あり","voice":"なし","braille":"あり","ostomate":"","pictogram":""},"notes":{},"remarks":"","rep":true,"pending":false,"photos":[{"cat":"toilet","alt":"2号館 3階 女性トイレの個室内部（便器と手すり）","cap":"トイレ内部","thumb":"photos/thumb/S2-3F-F1_toilet1.jpg","full":"photos/web/S2-3F-F1_toilet1.jpg"},{"cat":"door","alt":"2号館 3階 女性トイレの入口ドア","cap":"入口ドア","thumb":"photos/thumb/S2-3F-F1_door1.jpg","full":"photos/web/S2-3F-F1_door1.jpg"}]},{"id":"S2-4F-M1","floor":"4F","type":"男性","detail":"","hours":"9:00~21:00","unisex":"なし","step":"なし","step_h":0,"door":"引き戸","w_out":null,"w_in":null,"f":{"handrail":"あり","sanitary":"なし","baby":"なし","callbtn":"なし","voice":"なし","braille":"あり","ostomate":"","pictogram":""},"notes":{},"remarks":"","rep":true,"pending":false,"photos":[{"cat":"toilet","alt":"2号館 4階 男性トイレの内部（小便器・個室と手すり）","cap":"トイレ内部","thumb":"photos/thumb/S2-4F-M1_toilet1.jpg","full":"photos/web/S2-4F-M1_toilet1.jpg"}]},{"id":"S2-4F-F1","floor":"4F","type":"女性","detail":"","hours":"9:00~21:00","unisex":"なし","step":"なし","step_h":0,"door":"開き戸(押戸)","w_out":null,"w_in":null,"f":{"handrail":"あり","sanitary":"あり","baby":"なし","callbtn":"あり","voice":"なし","braille":"あり","ostomate":"","pictogram":""},"notes":{},"remarks":"","rep":true,"pending":false,"photos":[{"cat":"toilet","alt":"2号館 4階 女性トイレの個室内部（便器と手すり）","cap":"トイレ内部","thumb":"photos/thumb/S2-4F-F1_toilet1.jpg","full":"photos/web/S2-4F-F1_toilet1.jpg"},{"cat":"door","alt":"2号館 4階 女性トイレの入口ドア","cap":"入口ドア","thumb":"photos/thumb/S2-4F-F1_door1.jpg","full":"photos/web/S2-4F-F1_door1.jpg"}]},{"id":"S2-5F-M1","floor":"5F","type":"男性","detail":"","hours":"","unisex":"","step":"なし","step_h":0,"door":"引き戸","w_out":null,"w_in":null,"f":{"handrail":"一部","sanitary":"なし","baby":"なし","callbtn":"なし","voice":"なし","braille":"あり","ostomate":"","pictogram":""},"notes":{"手すり":"あり(1/3)"},"remarks":"","rep":true,"pending":false,"photos":[{"cat":"toilet","alt":"2号館 5階 男性トイレの内部（小便器・個室と手すり）","cap":"トイレ内部","thumb":"photos/thumb/S2-5F-M1_toilet1.jpg","full":"photos/web/S2-5F-M1_toilet1.jpg"}]},{"id":"S2-5F-F1","floor":"5F","type":"女性","detail":"","hours":"9:00~21:00","unisex":"なし","step":"なし","step_h":0,"door":"開き戸(押戸)","w_out":null,"w_in":null,"f":{"handrail":"あり","sanitary":"あり","baby":"なし","callbtn":"あり","voice":"なし","braille":"あり","ostomate":"","pictogram":""},"notes":{},"remarks":"","rep":true,"pending":false,"photos":[{"cat":"toilet","alt":"2号館 5階 女性トイレの個室内部（便器と手すり）","cap":"トイレ内部","thumb":"photos/thumb/S2-5F-F1_toilet1.jpg","full":"photos/web/S2-5F-F1_toilet1.jpg"},{"cat":"door","alt":"2号館 5階 女性トイレの入口ドア","cap":"入口ドア","thumb":"photos/thumb/S2-5F-F1_door1.jpg","full":"photos/web/S2-5F-F1_door1.jpg"}]}]},{"code":"SF","letter":"F","name":"百周年記念館","short":"百周年記念館","official":"Centennial Building","status":"pending","pos":{"x":540,"y":250,"w":115,"h":170},"notes":["西門側（建物西面）にスロープあり","地下1階〜4階に多機能トイレあり（設備の詳細は調査中）"],"toilets":[{"id":"SF-B1-X1","floor":"B1","type":"多目的","detail":"","hours":"","unisex":"","step":"","step_h":null,"door":"","w_out":null,"w_in":null,"f":{"handrail":"あり","sanitary":"","baby":"","callbtn":"","voice":"","braille":"","ostomate":"","pictogram":""},"notes":{},"remarks":"多機能トイレあり","rep":false,"pending":true,"photos":[]},{"id":"SF-1F-X1","floor":"1F","type":"多目的","detail":"","hours":"","unisex":"","step":"","step_h":null,"door":"","w_out":null,"w_in":null,"f":{"handrail":"","sanitary":"","baby":"","callbtn":"","voice":"","braille":"","ostomate":"","pictogram":""},"notes":{},"remarks":"多機能トイレあり","rep":false,"pending":true,"photos":[]},{"id":"SF-2F-X1","floor":"2F","type":"多目的","detail":"","hours":"","unisex":"","step":"","step_h":null,"door":"","w_out":null,"w_in":null,"f":{"handrail":"","sanitary":"","baby":"","callbtn":"","voice":"","braille":"","ostomate":"","pictogram":""},"notes":{},"remarks":"多機能トイレあり","rep":false,"pending":true,"photos":[]},{"id":"SF-3F-X1","floor":"3F","type":"多目的","detail":"","hours":"","unisex":"","step":"","step_h":null,"door":"","w_out":null,"w_in":null,"f":{"handrail":"","sanitary":"","baby":"","callbtn":"","voice":"","braille":"","ostomate":"","pictogram":""},"notes":{},"remarks":"多機能トイレあり","rep":false,"pending":true,"photos":[]},{"id":"SF-4F-X1","floor":"4F","type":"多目的","detail":"","hours":"","unisex":"","step":"","step_h":null,"door":"","w_out":null,"w_in":null,"f":{"handrail":"","sanitary":"","baby":"","callbtn":"","voice":"","braille":"","ostomate":"","pictogram":""},"notes":{},"remarks":"多機能トイレあり","rep":false,"pending":true,"photos":[]}]},{"code":"S1","letter":"G","name":"1号館","short":"1号館","official":"120周年記念 1号館","status":"surveyed","pos":{"x":705,"y":20,"w":120,"h":130},"notes":["スカイウォーク（2階）で2号館と接続","1号館から2号館へのスロープは幅166cm。1号館側スロープの曲がり部分は幅130cm","1階に多機能トイレあり（手すりあり・オストメイトなし）","男子トイレの写真は1階で撮影したものを代表写真として掲載しています"],"toilets":[{"id":"S1-1F-F1","floor":"1F","type":"女性","detail":"","hours":"","unisex":"なし","step":"なし","step_h":0,"door":"開き戸(押戸)","w_out":null,"w_in":null,"f":{"handrail":"一部","sanitary":"あり","baby":"なし","callbtn":"あり","voice":"なし","braille":"あり","ostomate":"","pictogram":""},"notes":{"手すり":"あり(1個)"},"remarks":"多機能トイレあり","rep":false,"pending":false,"photos":[{"cat":"toilet","alt":"1号館 1階 女性トイレの個室内部（便器と手すり）","cap":"トイレ内部","thumb":"photos/thumb/S1-1F-F1_toilet1.jpg","full":"photos/web/S1-1F-F1_toilet1.jpg"},{"cat":"door","alt":"1号館 1階 女性トイレの入口ドア","cap":"入口ドア","thumb":"photos/thumb/S1-1F-F1_door1.jpg","full":"photos/web/S1-1F-F1_door1.jpg"}]},{"id":"S1-1F-M1","floor":"1F","type":"男性","detail":"","hours":"","unisex":"なし","step":"なし","step_h":0,"door":"開き戸(押戸)","w_out":null,"w_in":null,"f":{"handrail":"あり","sanitary":"なし","baby":"なし","callbtn":"なし","voice":"なし","braille":"あり","ostomate":"","pictogram":""},"notes":{},"remarks":"多機能トイレあり","rep":false,"pending":false,"photos":[{"cat":"toilet","alt":"1号館 1階 男性トイレの内部（小便器・個室と手すり）","cap":"トイレ内部","thumb":"photos/thumb/S1-1F-M1_toilet1.jpg","full":"photos/web/S1-1F-M1_toilet1.jpg"},{"cat":"toilet","alt":"1号館 1階 男性トイレの内部（小便器・個室と手すり）","cap":"トイレ内部","thumb":"photos/thumb/S1-1F-M1_toilet2.jpg","full":"photos/web/S1-1F-M1_toilet2.jpg"},{"cat":"toilet","alt":"1号館 1階 男性トイレの内部（小便器・個室と手すり）","cap":"トイレ内部","thumb":"photos/thumb/S1-1F-M1_toilet3.jpg","full":"photos/web/S1-1F-M1_toilet3.jpg"},{"cat":"door","alt":"1号館 1階 男性トイレの入口ドア","cap":"入口ドア","thumb":"photos/thumb/S1-1F-M1_door1.jpg","full":"photos/web/S1-1F-M1_door1.jpg"},{"cat":"door","alt":"1号館 1階 男性トイレの入口ドア","cap":"入口ドア","thumb":"photos/thumb/S1-1F-M1_door2.jpg","full":"photos/web/S1-1F-M1_door2.jpg"}]},{"id":"S1-2F-F1","floor":"2F","type":"女性","detail":"","hours":"","unisex":"なし","step":"なし","step_h":0,"door":"開き戸(押戸)","w_out":null,"w_in":null,"f":{"handrail":"一部","sanitary":"あり","baby":"なし","callbtn":"あり","voice":"なし","braille":"あり","ostomate":"","pictogram":""},"notes":{"手すり":"あり(1個)"},"remarks":"多機能トイレあり","rep":false,"pending":false,"photos":[{"cat":"toilet","alt":"1号館 2階 女性トイレの個室内部（便器と手すり）","cap":"トイレ内部","thumb":"photos/thumb/S1-2F-F1_toilet1.jpg","full":"photos/web/S1-2F-F1_toilet1.jpg"},{"cat":"door","alt":"1号館 2階 女性トイレの入口ドア","cap":"入口ドア","thumb":"photos/thumb/S1-2F-F1_door1.jpg","full":"photos/web/S1-2F-F1_door1.jpg"}]},{"id":"S1-2F-M1","floor":"2F","type":"男性","detail":"","hours":"","unisex":"なし","step":"なし","step_h":0,"door":"開き戸(押戸)","w_out":null,"w_in":null,"f":{"handrail":"あり","sanitary":"なし","baby":"なし","callbtn":"なし","voice":"なし","braille":"あり","ostomate":"","pictogram":""},"notes":{},"remarks":"多機能トイレあり","rep":true,"pending":false,"photos":[{"cat":"toilet","alt":"1号館 2階 男性トイレの内部（小便器・個室と手すり）","cap":"トイレ内部","thumb":"photos/thumb/S1-2F-M1_toilet1.jpg","full":"photos/web/S1-2F-M1_toilet1.jpg"},{"cat":"toilet","alt":"1号館 2階 男性トイレの内部（小便器・個室と手すり）","cap":"トイレ内部","thumb":"photos/thumb/S1-2F-M1_toilet2.jpg","full":"photos/web/S1-2F-M1_toilet2.jpg"},{"cat":"toilet","alt":"1号館 2階 男性トイレの内部（小便器・個室と手すり）","cap":"トイレ内部","thumb":"photos/thumb/S1-2F-M1_toilet3.jpg","full":"photos/web/S1-2F-M1_toilet3.jpg"},{"cat":"door","alt":"1号館 2階 男性トイレの入口ドア","cap":"入口ドア","thumb":"photos/thumb/S1-2F-M1_door1.jpg","full":"photos/web/S1-2F-M1_door1.jpg"}]},{"id":"S1-3F-F1","floor":"3F","type":"女性","detail":"","hours":"","unisex":"なし","step":"なし","step_h":0,"door":"開き戸(押戸)","w_out":null,"w_in":null,"f":{"handrail":"一部","sanitary":"あり","baby":"なし","callbtn":"あり","voice":"なし","braille":"あり","ostomate":"","pictogram":""},"notes":{"手すり":"あり(1個)"},"remarks":"多機能トイレあり","rep":false,"pending":false,"photos":[{"cat":"toilet","alt":"1号館 3階 女性トイレの個室内部（便器と手すり）","cap":"トイレ内部","thumb":"photos/thumb/S1-3F-F1_toilet1.jpg","full":"photos/web/S1-3F-F1_toilet1.jpg"},{"cat":"door","alt":"1号館 3階 女性トイレの入口ドア","cap":"入口ドア","thumb":"photos/thumb/S1-3F-F1_door1.jpg","full":"photos/web/S1-3F-F1_door1.jpg"}]},{"id":"S1-3F-M1","floor":"3F","type":"男性","detail":"","hours":"","unisex":"","step":"なし","step_h":0,"door":"開き戸(押戸)","w_out":null,"w_in":null,"f":{"handrail":"あり","sanitary":"なし","baby":"なし","callbtn":"なし","voice":"なし","braille":"あり","ostomate":"","pictogram":""},"notes":{},"remarks":"多機能トイレあり","rep":true,"pending":false,"photos":[{"cat":"door","alt":"1号館 3階 男性トイレの入口ドア","cap":"入口ドア","thumb":"photos/thumb/S1-3F-M1_door1.jpg","full":"photos/web/S1-3F-M1_door1.jpg"},{"cat":"toilet","alt":"1号館 3階 男性トイレの内部（小便器・個室と手すり）","cap":"トイレ内部","thumb":"photos/thumb/S1-3F-M1_toilet1.jpg","full":"photos/web/S1-3F-M1_toilet1.jpg"},{"cat":"toilet","alt":"1号館 3階 男性トイレの内部（小便器・個室と手すり）","cap":"トイレ内部","thumb":"photos/thumb/S1-3F-M1_toilet2.jpg","full":"photos/web/S1-3F-M1_toilet2.jpg"},{"cat":"toilet","alt":"1号館 3階 男性トイレの内部（小便器・個室と手すり）","cap":"トイレ内部","thumb":"photos/thumb/S1-3F-M1_toilet3.jpg","full":"photos/web/S1-3F-M1_toilet3.jpg"}]},{"id":"S1-4F-F1","floor":"4F","type":"女性","detail":"","hours":"","unisex":"なし","step":"なし","step_h":0,"door":"開き戸(押戸)","w_out":null,"w_in":null,"f":{"handrail":"一部","sanitary":"あり","baby":"なし","callbtn":"あり","voice":"なし","braille":"あり","ostomate":"","pictogram":""},"notes":{"手すり":"あり(1個)"},"remarks":"多機能トイレあり","rep":false,"pending":false,"photos":[{"cat":"toilet","alt":"1号館 4階 女性トイレの個室内部（便器と手すり）","cap":"トイレ内部","thumb":"photos/thumb/S1-4F-F1_toilet1.jpg","full":"photos/web/S1-4F-F1_toilet1.jpg"},{"cat":"door","alt":"1号館 4階 女性トイレの入口ドア","cap":"入口ドア","thumb":"photos/thumb/S1-4F-F1_door1.jpg","full":"photos/web/S1-4F-F1_door1.jpg"}]},{"id":"S1-4F-M1","floor":"4F","type":"男性","detail":"","hours":"","unisex":"なし","step":"なし","step_h":0,"door":"開き戸(押戸)","w_out":null,"w_in":null,"f":{"handrail":"あり","sanitary":"なし","baby":"なし","callbtn":"なし","voice":"なし","braille":"あり","ostomate":"","pictogram":""},"notes":{},"remarks":"多機能トイレあり","rep":false,"pending":false,"photos":[{"cat":"toilet","alt":"1号館 4階 男性トイレの内部（小便器・個室と手すり）","cap":"トイレ内部","thumb":"photos/thumb/S1-4F-M1_toilet1.jpg","full":"photos/web/S1-4F-M1_toilet1.jpg"},{"cat":"door","alt":"1号館 4階 男性トイレの入口ドア","cap":"入口ドア","thumb":"photos/thumb/S1-4F-M1_door1.jpg","full":"photos/web/S1-4F-M1_door1.jpg"},{"cat":"toilet","alt":"1号館 4階 男性トイレの内部（小便器・個室と手すり）","cap":"トイレ内部","thumb":"photos/thumb/S1-4F-M1_toilet2.jpg","full":"photos/web/S1-4F-M1_toilet2.jpg"},{"cat":"toilet","alt":"1号館 4階 男性トイレの内部（小便器・個室と手すり）","cap":"トイレ内部","thumb":"photos/thumb/S1-4F-M1_toilet3.jpg","full":"photos/web/S1-4F-M1_toilet3.jpg"},{"cat":"toilet","alt":"1号館 4階 男性トイレの内部（小便器・個室と手すり）","cap":"トイレ内部","thumb":"photos/thumb/S1-4F-M1_toilet4.jpg","full":"photos/web/S1-4F-M1_toilet4.jpg"}]}]},{"code":"S5","letter":"H","name":"5号館","short":"5号館","official":"130周年記念 5号館","status":"surveyed","pos":{"x":705,"y":240,"w":155,"h":150},"notes":["右側入口にAED（1階）","建物南西側（若木会館側）にスロープあり","スカイウォーク（2階連絡通路）は5号館には接続していません","3階多機能トイレ：オストメイト、ボタン式、おむつ交換台、ベビーチェア、開閉ボタン付き","1階（体育館内）トイレ：通路は車いすで通れるが個室が狭く車いすは入れない。手前の個室に手すり。洗面台の高さが同じで車いすでは届かない。扉が重い。スロープあり"],"toilets":[{"id":"S5-1F-U1","floor":"1F","type":"多目的","detail":"","hours":"","unisex":"あり","step":"","step_h":null,"door":"","w_out":null,"w_in":null,"f":{"handrail":"","sanitary":"","baby":"","callbtn":"","voice":"","braille":"","ostomate":"","pictogram":""},"notes":{},"remarks":"歩幅的には車いすは通れるが、個室は狭く車いすは入れない。 \n各個室のうち、1番手前の個室にてすり有り。 \n洗面台の高さはすべて同じ、車いすの人は届かない。 \n扉が重たい \nスロープ","rep":false,"pending":true,"photos":[{"cat":"toilet","alt":"5号館 1階 多目的トイレの内部。便器、手すり、洗面台などの配置","cap":"トイレ内部","thumb":"photos/thumb/S5-1F-U1_toilet1.jpg","full":"photos/web/S5-1F-U1_toilet1.jpg"}]},{"id":"S5-2F-F1","floor":"2F","type":"女性","detail":"","hours":"","unisex":"なし","step":"なし","step_h":0,"door":"開き戸(押戸)","w_out":null,"w_in":null,"f":{"handrail":"あり","sanitary":"あり","baby":"なし","callbtn":"あり","voice":"なし","braille":"あり","ostomate":"","pictogram":""},"notes":{"緊急呼び出しボタン":"壁付け"},"remarks":"","rep":false,"pending":false,"photos":[{"cat":"toilet","alt":"5号館 2階 女性トイレの個室内部（便器と手すり）","cap":"トイレ内部","thumb":"photos/thumb/S5-2F-F1_toilet1.jpg","full":"photos/web/S5-2F-F1_toilet1.jpg"},{"cat":"door","alt":"5号館 2階 女性トイレの入口ドア","cap":"入口ドア","thumb":"photos/thumb/S5-2F-F1_door1.jpg","full":"photos/web/S5-2F-F1_door1.jpg"}]},{"id":"S5-2F-M1","floor":"2F","type":"男性","detail":"","hours":"","unisex":"なし","step":"なし","step_h":0,"door":"開き戸(押戸)","w_out":null,"w_in":null,"f":{"handrail":"あり","sanitary":"なし","baby":"なし","callbtn":"なし","voice":"なし","braille":"あり","ostomate":"","pictogram":""},"notes":{},"remarks":"","rep":false,"pending":false,"photos":[{"cat":"toilet","alt":"5号館 2階 男性トイレの内部（小便器・個室と手すり）","cap":"トイレ内部","thumb":"photos/thumb/S5-2F-M1_toilet1.jpg","full":"photos/web/S5-2F-M1_toilet1.jpg"},{"cat":"toilet","alt":"5号館 2階 男性トイレの内部（小便器・個室と手すり）","cap":"トイレ内部","thumb":"photos/thumb/S5-2F-M1_toilet2.jpg","full":"photos/web/S5-2F-M1_toilet2.jpg"},{"cat":"door","alt":"5号館 2階 男性トイレの入口ドア","cap":"入口ドア","thumb":"photos/thumb/S5-2F-M1_door1.jpg","full":"photos/web/S5-2F-M1_door1.jpg"},{"cat":"toilet","alt":"5号館 2階 男性トイレの内部（小便器・個室と手すり）","cap":"トイレ内部","thumb":"photos/thumb/S5-2F-M1_toilet3.jpg","full":"photos/web/S5-2F-M1_toilet3.jpg"}]},{"id":"S5-3F-U1","floor":"3F","type":"多目的","detail":"","hours":"","unisex":"あり","step":"なし","step_h":0,"door":"自動ドア","w_out":null,"w_in":null,"f":{"handrail":"あり","sanitary":"あり","baby":"あり","callbtn":"あり","voice":"あり","braille":"あり","ostomate":"あり","pictogram":""},"notes":{"緊急呼び出しボタン":"壁付け","オストメイト対応":"巡検メモより"},"remarks":"","rep":false,"pending":false,"photos":[{"cat":"toilet","alt":"5号館 3階 多目的トイレの内部。便器、手すり、洗面台などの配置","cap":"トイレ内部","thumb":"photos/thumb/S5-3F-U1_toilet1.jpg","full":"photos/web/S5-3F-U1_toilet1.jpg"},{"cat":"door","alt":"5号館 3階 多目的トイレの入口ドア","cap":"入口ドア","thumb":"photos/thumb/S5-3F-U1_door1.jpg","full":"photos/web/S5-3F-U1_door1.jpg"},{"cat":"baby","alt":"5号館 3階 多目的トイレのベビーシート","cap":"ベビーシート","thumb":"photos/thumb/S5-3F-U1_baby1.jpg","full":"photos/web/S5-3F-U1_baby1.jpg"}]},{"id":"S5-3F-F1","floor":"3F","type":"女性","detail":"テラス側","hours":"","unisex":"なし","step":"なし","step_h":0,"door":"開き戸(押戸)","w_out":null,"w_in":null,"f":{"handrail":"あり","sanitary":"あり","baby":"あり","callbtn":"あり","voice":"なし","braille":"あり","ostomate":"","pictogram":""},"notes":{"サニタリーボックス":"ボタンありタイプ","ベビーシート":"ベビーチェアも"},"remarks":"","rep":false,"pending":false,"photos":[{"cat":"toilet","alt":"5号館 3階 女性トイレの個室内部（便器と手すり）","cap":"トイレ内部","thumb":"photos/thumb/S5-3F-F1_toilet1.jpg","full":"photos/web/S5-3F-F1_toilet1.jpg"},{"cat":"door","alt":"5号館 3階 女性トイレの入口ドア","cap":"入口ドア","thumb":"photos/thumb/S5-3F-F1_door1.jpg","full":"photos/web/S5-3F-F1_door1.jpg"}]},{"id":"S5-3F-M1","floor":"3F","type":"男性","detail":"テラス側","hours":"","unisex":"なし","step":"なし","step_h":0,"door":"開き戸(押戸)","w_out":null,"w_in":null,"f":{"handrail":"あり","sanitary":"なし","baby":"なし","callbtn":"なし","voice":"なし","braille":"あり","ostomate":"","pictogram":""},"notes":{},"remarks":"","rep":false,"pending":false,"photos":[{"cat":"toilet","alt":"5号館 3階 男性トイレの内部（小便器・個室と手すり）","cap":"トイレ内部","thumb":"photos/thumb/S5-3F-M1_toilet1.jpg","full":"photos/web/S5-3F-M1_toilet1.jpg"},{"cat":"toilet","alt":"5号館 3階 男性トイレの内部（小便器・個室と手すり）","cap":"トイレ内部","thumb":"photos/thumb/S5-3F-M1_toilet2.jpg","full":"photos/web/S5-3F-M1_toilet2.jpg"},{"cat":"door","alt":"5号館 3階 男性トイレの入口ドア","cap":"入口ドア","thumb":"photos/thumb/S5-3F-M1_door1.jpg","full":"photos/web/S5-3F-M1_door1.jpg"},{"cat":"toilet","alt":"5号館 3階 男性トイレの内部（小便器・個室と手すり）","cap":"トイレ内部","thumb":"photos/thumb/S5-3F-M1_toilet3.jpg","full":"photos/web/S5-3F-M1_toilet3.jpg"},{"cat":"door","alt":"5号館 3階 男性トイレの入口ドア","cap":"入口ドア","thumb":"photos/thumb/S5-3F-M1_door2.jpg","full":"photos/web/S5-3F-M1_door2.jpg"}]}]},{"code":"S6","letter":"I","name":"6号館","short":"6号館","official":"総合学修館","status":"surveyed","pos":{"x":420,"y":531,"w":125,"h":60},"notes":["6号館は道路（渋谷・恵比寿方面）を挟んだキャンパス南側にあります。西門を出て左（渋谷方面）へ進み、角の横断歩道を渡って向かいます","スカイウォーク（2階連絡通路）は6号館には接続していません","1階にAED、エレベーターあり","男子トイレの開き幅は70cm","点字ブロックは1階のエレベーターまで続きます","利用時間 9:00〜17:00（他の建物より早く閉まります）"],"toilets":[{"id":"S6-B2-U1","floor":"B2","type":"多目的","detail":"","hours":"9:00~17:00","unisex":"あり","step":"なし","step_h":0,"door":"引き戸","w_out":null,"w_in":null,"f":{"handrail":"あり","sanitary":"あり","baby":"あり","callbtn":"あり","voice":"なし","braille":"あり","ostomate":"","pictogram":""},"notes":{"手すり":"2本有","ベビーシート":"壁付け","緊急呼び出しボタン":"壁付け"},"remarks":"","rep":false,"pending":false,"photos":[]},{"id":"S6-B2-F1","floor":"B2","type":"女性","detail":"","hours":"9:00~17:00","unisex":"なし","step":"なし","step_h":0,"door":"開き戸(押戸)","w_out":null,"w_in":null,"f":{"handrail":"なし","sanitary":"あり","baby":"なし","callbtn":"あり","voice":"なし","braille":"あり","ostomate":"","pictogram":""},"notes":{"緊急呼び出しボタン":"壁付け"},"remarks":"","rep":false,"pending":false,"photos":[{"cat":"toilet","alt":"6号館 地下2階 女性トイレの個室内部（便器と手すり）","cap":"トイレ内部","thumb":"photos/thumb/S6-B2-F1_toilet1.jpg","full":"photos/web/S6-B2-F1_toilet1.jpg"},{"cat":"door","alt":"6号館 地下2階 女性トイレの入口ドア","cap":"入口ドア","thumb":"photos/thumb/S6-B2-F1_door1.jpg","full":"photos/web/S6-B2-F1_door1.jpg"}]},{"id":"S6-B2-M1","floor":"B2","type":"男性","detail":"","hours":"9:00~17:00","unisex":"なし","step":"なし","step_h":0,"door":"開き戸(押戸)","w_out":null,"w_in":null,"f":{"handrail":"あり","sanitary":"なし","baby":"なし","callbtn":"なし","voice":"なし","braille":"あり","ostomate":"","pictogram":""},"notes":{},"remarks":"","rep":false,"pending":false,"photos":[{"cat":"toilet","alt":"6号館 地下2階 男性トイレの内部（小便器・個室と手すり）","cap":"トイレ内部","thumb":"photos/thumb/S6-B2-M1_toilet1.jpg","full":"photos/web/S6-B2-M1_toilet1.jpg"},{"cat":"door","alt":"6号館 地下2階 男性トイレの入口ドア","cap":"入口ドア","thumb":"photos/thumb/S6-B2-M1_door1.jpg","full":"photos/web/S6-B2-M1_door1.jpg"},{"cat":"toilet","alt":"6号館 地下2階 男性トイレの内部（小便器・個室と手すり）","cap":"トイレ内部","thumb":"photos/thumb/S6-B2-M1_toilet2.jpg","full":"photos/web/S6-B2-M1_toilet2.jpg"}]},{"id":"S6-B1-U1","floor":"B1","type":"多目的","detail":"","hours":"9:00~17:00","unisex":"あり","step":"なし","step_h":0,"door":"引き戸","w_out":null,"w_in":null,"f":{"handrail":"あり","sanitary":"あり","baby":"あり","callbtn":"あり","voice":"なし","braille":"あり","ostomate":"","pictogram":""},"notes":{"手すり":"2本有","ベビーシート":"壁付け","緊急呼び出しボタン":"壁付け"},"remarks":"","rep":false,"pending":false,"photos":[{"cat":"toilet","alt":"6号館 地下1階 多目的トイレの内部。便器、手すり、洗面台などの配置","cap":"トイレ内部","thumb":"photos/thumb/S6-B1-U1_toilet1.jpg","full":"photos/web/S6-B1-U1_toilet1.jpg"},{"cat":"door","alt":"6号館 地下1階 多目的トイレの入口ドア","cap":"入口ドア","thumb":"photos/thumb/S6-B1-U1_door1.jpg","full":"photos/web/S6-B1-U1_door1.jpg"},{"cat":"door","alt":"6号館 地下1階 多目的トイレの入口ドア","cap":"入口ドア","thumb":"photos/thumb/S6-B1-U1_door2.jpg","full":"photos/web/S6-B1-U1_door2.jpg"}]},{"id":"S6-B1-F1","floor":"B1","type":"女性","detail":"","hours":"9:00~17:00","unisex":"なし","step":"なし","step_h":0,"door":"開き戸(押戸)","w_out":null,"w_in":null,"f":{"handrail":"なし","sanitary":"あり","baby":"なし","callbtn":"あり","voice":"なし","braille":"あり","ostomate":"","pictogram":""},"notes":{"緊急呼び出しボタン":"壁付け"},"remarks":"","rep":false,"pending":false,"photos":[{"cat":"toilet","alt":"6号館 地下1階 女性トイレの個室内部（便器と手すり）","cap":"トイレ内部","thumb":"photos/thumb/S6-B1-F1_toilet1.jpg","full":"photos/web/S6-B1-F1_toilet1.jpg"},{"cat":"door","alt":"6号館 地下1階 女性トイレの入口ドア","cap":"入口ドア","thumb":"photos/thumb/S6-B1-F1_door1.jpg","full":"photos/web/S6-B1-F1_door1.jpg"}]},{"id":"S6-B1-M1","floor":"B1","type":"男性","detail":"","hours":"9:00~17:00","unisex":"なし","step":"なし","step_h":0,"door":"開き戸(押戸)","w_out":null,"w_in":null,"f":{"handrail":"あり","sanitary":"なし","baby":"なし","callbtn":"なし","voice":"なし","braille":"あり","ostomate":"","pictogram":""},"notes":{},"remarks":"","rep":true,"pending":false,"photos":[{"cat":"door","alt":"6号館 地下1階 男性トイレの入口ドア","cap":"入口ドア","thumb":"photos/thumb/S6-B1-M1_door1.jpg","full":"photos/web/S6-B1-M1_door1.jpg"},{"cat":"toilet","alt":"6号館 地下1階 男性トイレの内部（小便器・個室と手すり）","cap":"トイレ内部","thumb":"photos/thumb/S6-B1-M1_toilet1.jpg","full":"photos/web/S6-B1-M1_toilet1.jpg"},{"cat":"toilet","alt":"6号館 地下1階 男性トイレの内部（小便器・個室と手すり）","cap":"トイレ内部","thumb":"photos/thumb/S6-B1-M1_toilet2.jpg","full":"photos/web/S6-B1-M1_toilet2.jpg"}]},{"id":"S6-1F-U1","floor":"1F","type":"多目的","detail":"","hours":"9:00~17:00","unisex":"あり","step":"なし","step_h":0,"door":"自動ドア","w_out":null,"w_in":null,"f":{"handrail":"あり","sanitary":"あり","baby":"あり","callbtn":"あり","voice":"なし","braille":"あり","ostomate":"","pictogram":""},"notes":{"手すり":"2本有","ベビーシート":"壁付け","緊急呼び出しボタン":"壁付け"},"remarks":"","rep":false,"pending":false,"photos":[{"cat":"toilet","alt":"6号館 1階 多目的トイレの内部。便器、手すり、洗面台などの配置","cap":"トイレ内部","thumb":"photos/thumb/S6-1F-U1_toilet1.jpg","full":"photos/web/S6-1F-U1_toilet1.jpg"},{"cat":"door","alt":"6号館 1階 多目的トイレの入口ドア","cap":"入口ドア","thumb":"photos/thumb/S6-1F-U1_door1.jpg","full":"photos/web/S6-1F-U1_door1.jpg"},{"cat":"baby","alt":"6号館 1階 多目的トイレのベビーシート","cap":"ベビーシート","thumb":"photos/thumb/S6-1F-U1_baby1.jpg","full":"photos/web/S6-1F-U1_baby1.jpg"}]},{"id":"S6-1F-F1","floor":"1F","type":"女性","detail":"","hours":"9:00~17:00","unisex":"なし","step":"なし","step_h":0,"door":"開き戸(押戸)","w_out":null,"w_in":null,"f":{"handrail":"なし","sanitary":"あり","baby":"なし","callbtn":"あり","voice":"なし","braille":"あり","ostomate":"","pictogram":""},"notes":{"緊急呼び出しボタン":"壁付け"},"remarks":"","rep":false,"pending":false,"photos":[{"cat":"toilet","alt":"6号館 1階 女性トイレの個室内部（便器と手すり）","cap":"トイレ内部","thumb":"photos/thumb/S6-1F-F1_toilet1.jpg","full":"photos/web/S6-1F-F1_toilet1.jpg"},{"cat":"door","alt":"6号館 1階 女性トイレの入口ドア","cap":"入口ドア","thumb":"photos/thumb/S6-1F-F1_door1.jpg","full":"photos/web/S6-1F-F1_door1.jpg"}]},{"id":"S6-1F-M1","floor":"1F","type":"男性","detail":"","hours":"9:00~17:00","unisex":"なし","step":"なし","step_h":0,"door":"開き戸(押戸)","w_out":null,"w_in":null,"f":{"handrail":"あり","sanitary":"なし","baby":"なし","callbtn":"なし","voice":"なし","braille":"あり","ostomate":"","pictogram":""},"notes":{},"remarks":"","rep":true,"pending":false,"photos":[{"cat":"toilet","alt":"6号館 1階 男性トイレの内部（小便器・個室と手すり）","cap":"トイレ内部","thumb":"photos/thumb/S6-1F-M1_toilet1.jpg","full":"photos/web/S6-1F-M1_toilet1.jpg"},{"cat":"door","alt":"6号館 1階 男性トイレの入口ドア","cap":"入口ドア","thumb":"photos/thumb/S6-1F-M1_door1.jpg","full":"photos/web/S6-1F-M1_door1.jpg"},{"cat":"toilet","alt":"6号館 1階 男性トイレの内部（小便器・個室と手すり）","cap":"トイレ内部","thumb":"photos/thumb/S6-1F-M1_toilet2.jpg","full":"photos/web/S6-1F-M1_toilet2.jpg"},{"cat":"toilet","alt":"6号館 1階 男性トイレの内部（小便器・個室と手すり）","cap":"トイレ内部","thumb":"photos/thumb/S6-1F-M1_toilet3.jpg","full":"photos/web/S6-1F-M1_toilet3.jpg"}]},{"id":"S6-2F-F1","floor":"2F","type":"女性","detail":"","hours":"9:00~17:00","unisex":"なし","step":"なし","step_h":0,"door":"開き戸(押戸)","w_out":null,"w_in":null,"f":{"handrail":"なし","sanitary":"あり","baby":"なし","callbtn":"あり","voice":"なし","braille":"あり","ostomate":"","pictogram":""},"notes":{"緊急呼び出しボタン":"壁付け"},"remarks":"","rep":false,"pending":false,"photos":[{"cat":"toilet","alt":"6号館 2階 女性トイレの個室内部（便器と手すり）","cap":"トイレ内部","thumb":"photos/thumb/S6-2F-F1_toilet1.jpg","full":"photos/web/S6-2F-F1_toilet1.jpg"},{"cat":"door","alt":"6号館 2階 女性トイレの入口ドア","cap":"入口ドア","thumb":"photos/thumb/S6-2F-F1_door1.jpg","full":"photos/web/S6-2F-F1_door1.jpg"}]},{"id":"S6-2F-M1","floor":"2F","type":"男性","detail":"","hours":"9:00~17:00","unisex":"なし","step":"なし","step_h":0,"door":"開き戸(押戸)","w_out":null,"w_in":null,"f":{"handrail":"あり","sanitary":"なし","baby":"なし","callbtn":"なし","voice":"なし","braille":"あり","ostomate":"","pictogram":""},"notes":{},"remarks":"","rep":true,"pending":false,"photos":[{"cat":"toilet","alt":"6号館 2階 男性トイレの内部（小便器・個室と手すり）","cap":"トイレ内部","thumb":"photos/thumb/S6-2F-M1_toilet1.jpg","full":"photos/web/S6-2F-M1_toilet1.jpg"},{"cat":"door","alt":"6号館 2階 男性トイレの入口ドア","cap":"入口ドア","thumb":"photos/thumb/S6-2F-M1_door1.jpg","full":"photos/web/S6-2F-M1_door1.jpg"},{"cat":"toilet","alt":"6号館 2階 男性トイレの内部（小便器・個室と手すり）","cap":"トイレ内部","thumb":"photos/thumb/S6-2F-M1_toilet2.jpg","full":"photos/web/S6-2F-M1_toilet2.jpg"},{"cat":"toilet","alt":"6号館 2階 男性トイレの内部（小便器・個室と手すり）","cap":"トイレ内部","thumb":"photos/thumb/S6-2F-M1_toilet3.jpg","full":"photos/web/S6-2F-M1_toilet3.jpg"}]}]}],"features":{"skywalk":[[200,250,307,140],[493,140,510,140],[630,95,705,95],[765,150,765,240],[440,190,440,250]],"slopes":[{"x":168,"y":458,"label":"学術メディアセンター 正面入口側"},{"x":345,"y":213,"label":"3号館 1階（キャンパスモール側）"},{"x":540,"y":400,"label":"百周年記念館 西門側"},{"x":708,"y":370,"label":"5号館 南西側（若木会館側）"}],"crosswalks":[{"x":215,"y":262,"w":80,"h":30,"dir":"h","label":"正門前 ― スカイウォークの下で登り坂の道路を渡り学術メディアセンターへ"},{"x":160,"y":480,"w":44,"h":34,"dir":"v","label":"登り坂と渋谷・恵比寿方面の道路の交差点（学術メディアセンター側・バス停付近）"},{"x":306,"y":480,"w":44,"h":34,"dir":"v","label":"同じ交差点の角（神殿側）― 6号館へ渡る横断歩道"},{"x":215,"y":440,"w":80,"h":30,"dir":"h","label":"同じ交差点 ― 登り坂側（北側）を渡る横断歩道"},{"x":215,"y":531,"w":80,"h":30,"dir":"h","label":"同じ交差点 ― 南へ抜ける道路を渡る横断歩道"},{"x":612,"y":480,"w":44,"h":34,"dir":"v","label":"西門の先、南北の道路との交差点（百周年記念館側）で渋谷・恵比寿方面の道路を渡る横断歩道"},{"x":700,"y":480,"w":44,"h":34,"dir":"v","label":"同じ交差点（5号館側）で渋谷・恵比寿方面の道路を渡る横断歩道"},{"x":662,"y":440,"w":28,"h":38,"dir":"h","label":"南北の道路の南端（百周年記念館と5号館の間）"},{"x":662,"y":194,"w":28,"h":38,"dir":"h","label":"キャンパスモールと南北の道路の交差点（南門付近）"}],"gates":[{"x":300,"y":246,"label":"正門"},{"x":520,"y":471,"label":"西門"},{"x":636,"y":246,"label":"南門"}],"bus":[{"x":100,"y":462},{"x":600,"y":539}],"landmarks":[{"x":838,"y":20,"w":95,"h":50,"label":"院友会館"},{"x":838,"y":85,"w":95,"h":58,"label":"国際交流センター"},{"x":832,"y":172,"w":60,"h":40,"label":"休憩所"},{"x":730,"y":405,"w":110,"h":40,"label":"若木会館"},{"x":330,"y":318,"w":60,"h":30,"label":"モニュメント","shape":"ellipse"}],"aed":["AMC","WKT","S5","S6"],"ev":["AMC","WKT","S3","S2","SF","S1","S5","S6"],"info":["6号館（総合学修館）は、渋谷・恵比寿方面へ抜ける道路を挟んだキャンパスの南側にあります。西門を出て左（渋谷方面）へ進み、角にある横断歩道を渡ります。","スカイウォーク（2階の連絡通路）が学術メディアセンター・3号館・若木タワー・2号館・1号館をつないでおり、登り坂の道路を渡らずに移動できます。5号館・6号館には接続していません。","スロープは、学術メディアセンター正面入口側、3号館1階（キャンパスモール側）、百周年記念館の西門側、5号館の南西側にあります。","横断歩道は、正門前（スカイウォークの下、学術メディアセンターへ）、登り坂と渋谷・恵比寿方面の道路の十字路（4方向すべて）、西門の先の南北の道路とのT字路（3方向すべて）、南北の道路の北端（南門付近）にあります。","AED（1階）は学術メディアセンター、若木タワー、5号館、6号館にあります。エレベーターは神殿を除く各建物にあります。","院友会館・国際交流センターは1号館の東側、休憩所は1号館と5号館の間、若木会館は5号館の南側にあります（今回の調査対象外）。","バス停は学術メディアセンター前と6号館前にあります。キャンパス内に駐車場・駐輪場はありません。"]}};
+const $ = (s, r=document) => r.querySelector(s);
+const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+
+/* ---- icons (simple, shape + text always paired) ---- */
+const ICO = {
+  ok:  '<svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="7" fill="none" stroke="currentColor" stroke-width="2.4"/></svg>',
+  no:  '<svg viewBox="0 0 20 20" aria-hidden="true"><path d="M5 5l10 10M15 5L5 15" stroke="currentColor" stroke-width="2.4" fill="none"/></svg>',
+  part:'<svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 3.5L17.5 16.5H2.5Z" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round"/></svg>',
+  unk: '<svg viewBox="0 0 20 20" aria-hidden="true"><path d="M4 10h12" stroke="currentColor" stroke-width="2.4" fill="none"/></svg>',
+  multi:'<svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="7" cy="4" r="2" fill="currentColor"/><path d="M7 7v5h5l2.5 4M7 12a3.5 3.5 0 1 0 4 4.5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><path d="M14 4h2v4h-2z" fill="currentColor"/></svg>',
+};
+const STATE_LABEL = {ok:'あり', no:'なし', part:'一部', unk:'情報なし'};
+const st = v => v==='あり'?'ok':v==='なし'?'no':v==='一部'?'part':'unk';
+
+const FACTS = [
+  ['handrail','手すり'],['callbtn','緊急呼び出しボタン'],['ostomate','オストメイト対応'],['baby','ベビーシート'],
+  ['sanitary','サニタリーボックス'],['braille','点字案内'],['voice','音声案内'],['pictogram','ピクトグラム'],['unisex','男女共用'],
+];
+const FILTERS = [
+  {key:'multi', label:'多目的トイレ', test:t=>t.type==='多目的'},
+  {key:'ostomate', label:'オストメイト', test:t=>t.f.ostomate==='あり'},
+  {key:'baby', label:'ベビーシート', test:t=>t.f.baby==='あり'},
+  {key:'callbtn', label:'緊急呼び出しボタン', test:t=>t.f.callbtn==='あり'},
+  {key:'handrail', label:'手すり', test:t=>t.f.handrail==='あり'||t.f.handrail==='一部'},
+  {key:'nostep', label:'段差なし', test:t=>t.step==='なし'},
+  {key:'easydoor', label:'引き戸・自動ドア', test:t=>/引き戸|自動/.test(t.door||'')},
+];
+let active = new Set();
+const FLOOR_ORDER = ['5F','4F','3F','2F','1F','B1','B2'];
+const floorName = f => f.startsWith('B') ? `地下${f.slice(1)}階` : `${f.replace('F','')}階`;
+const typeName = {'男性':'男性トイレ','女性':'女性トイレ','多目的':'多目的トイレ'};
+
+const bById = Object.fromEntries(DATA.buildings.map(b=>[b.code,b]));
+const tById = {};
+DATA.buildings.forEach(b => b.toilets.forEach(t => { t.b = b; tById[t.id] = t; }));
+
+function matches(t){ return [...active].every(k => FILTERS.find(f=>f.key===k).test(t)); }
+
+/* ---- HOME ---- */
+function renderFilters(){
+  const wrap = $('#filters');
+  wrap.querySelectorAll('.chip').forEach(e=>e.remove());
+  FILTERS.forEach(f=>{
+    const b = document.createElement('button');
+    b.className='chip'; b.type='button'; b.setAttribute('aria-pressed', active.has(f.key));
+    b.textContent = f.label;
+    b.onclick = ()=>{ active.has(f.key)?active.delete(f.key):active.add(f.key); renderFilters(); renderHome(); announce(active.size? `しぼり込み: ${[...active].map(k=>FILTERS.find(x=>x.key===k).label).join('、')}` : 'しぼり込みを解除しました'); };
+    wrap.appendChild(b);
+  });
+  if(active.size){
+    const c = document.createElement('button'); c.className='chip clear'; c.type='button'; c.textContent='解除';
+    c.onclick=()=>{active.clear(); renderFilters(); renderHome();}; wrap.appendChild(c);
+  }
+}
+function bSummary(b){
+  const done = b.toilets.filter(t=>!t.pending);
+  const ts = done.filter(matches);
+  const multi = [...new Set(done.filter(t=>t.type==='多目的').map(t=>t.floor))].sort((a,c)=>FLOOR_ORDER.indexOf(a)-FLOOR_ORDER.indexOf(c));
+  return {ts, multi, done};
+}
+function renderMap(){
+  const W=1000,H=605; const F = DATA.features || {};
+  let s = `<svg viewBox="0 0 ${W} ${H}" role="group" aria-label="渋谷キャンパスの建物配置図。建物を選ぶと詳細に移動します。スロープ・横断歩道・スカイウォークの位置も表示しています（同じ内容を図の下に文章で掲載）">`;
+  s += `<rect x="0" y="0" width="${W}" height="${H}" fill="var(--map-bg)"/>`;
+  s += `<rect class="road" x="215" y="0" width="80" height="${H}"/>`;
+  s += `<rect class="road" x="0" y="480" width="${W}" height="34"/>`;
+  s += `<rect class="road" x="662" y="0" width="28" height="480"/>`;
+  s += `<rect class="mall" x="295" y="200" width="565" height="26" rx="4"/>`;
+  s += `<text class="mlabel" x="410" y="216" dy="0.3em">キャンパスモール（歩行者）</text>`;
+  s += `<text class="mlabel" x="222" y="20">↑ 表参道方面</text><text class="mlabel" x="222" y="430">登り坂</text><text class="mlabel" x="10" y="535">← 渋谷方面</text><text class="mlabel" x="222" y="590">↓ 渋谷・恵比寿方面</text><text class="mlabel" x="880" y="535">恵比寿方面 →</text><text class="mlabel" x="12" y="590">N ↑</text>`;
+  (F.skywalk||[]).forEach(([x1,y1,x2,y2])=>{ s += `<line class="sky" x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}"/>`; });
+  s += `<text class="mlabel" x="205" y="222" transform="rotate(-50 205 222)">スカイウォーク 2F</text>`;
+  (F.landmarks||[]).forEach(l=>{
+    if(l.shape==='ellipse') s += `<g aria-hidden="true"><ellipse class="lm" cx="${l.x+l.w/2}" cy="${l.y+l.h/2}" rx="${l.w/2}" ry="${l.h/2}"/><text class="lm-t" x="${l.x+l.w/2}" y="${l.y+l.h/2}" dy="0.35em" text-anchor="middle" font-size="10">${l.label}</text></g>`;
+    else s += `<g aria-hidden="true"><rect class="lm" x="${l.x}" y="${l.y}" width="${l.w}" height="${l.h}" rx="3"/><text class="lm-t" x="${l.x+l.w/2}" y="${l.y+l.h/2}" dy="0.35em" text-anchor="middle" font-size="${l.w<70?9.5:11}">${l.label}</text></g>`;
+  });
+  DATA.buildings.forEach((b,bi)=>{
+    const {x,y,w,h} = b.pos; const {ts,multi,done} = bSummary(b);
+    const off = b.status!=='surveyed';
+    const dim = active.size && ts.length===0 && !off;
+    const label = off ? (b.status==='pending'?`${b.name}（調査中）`:`${b.name}（今回の調査対象外）`)
+      : `${b.name}。調査済みトイレ${done.length}か所${multi.length?`、多目的トイレ ${multi.map(floorName).join('・')}`:''}${active.size?`、条件に合うトイレ${ts.length}か所`:''}`;
+    s += `<g class="bld${off?' off':''}${dim?' dim':''}" role="link" tabindex="0" data-b="${b.code}" aria-label="${esc(label)}" style="--d:${(bi*0.06).toFixed(2)}s">`;
+    s += `<rect x="${x}" y="${y}" width="${w}" height="${h}" rx="6"/>`;
+    const big = Math.min(w,h) > 90;
+    s += `<text x="${x+10}" y="${y+ (big?44:30)}" font-size="${big?40:26}" font-weight="700">${b.letter}</text>`;
+    const nameY = y + (big?70:50);
+    s += `<text x="${x+10}" y="${nameY}" font-size="${w<70?11:13}" font-weight="500">${esc(b.short||b.name)}</text>`;
+    if(!off && multi.length){
+      const bw = 22+multi.length*22; const bx = x+w-bw-6, by = y+6;
+      s += `<rect class="badge" x="${bx}" y="${by}" width="${bw}" height="20" rx="10"/>`;
+      s += `<text x="${bx+bw/2}" y="${by+10}" dy="0.35em" text-anchor="middle" font-size="11">多 ${multi.join('·')}</text>`;
+    }
+    if(off){ s += `<text x="${x+10}" y="${nameY+16}" font-size="10">${b.status==='pending'?'（調査中）':'（対象外）'}</text>`; }
+    let tx = x+w-6;
+    if((F.aed||[]).includes(b.code)){ s += `<rect class="tag-aed" x="${tx-34}" y="${y+h-22}" width="34" height="16" rx="3"/><text class="tag-t aed" x="${tx-17}" y="${y+h-14}" dy="0.35em" text-anchor="middle" font-size="9.5" font-weight="700">AED</text>`; tx -= 38; }
+    if((F.ev||[]).includes(b.code)){ s += `<rect class="tag-ev" x="${tx-26}" y="${y+h-22}" width="26" height="16" rx="3"/><text class="tag-t" x="${tx-13}" y="${y+h-14}" dy="0.35em" text-anchor="middle" font-size="9.5" font-weight="700">EV</text>`; }
+    s += `</g>`;
+  });
+  (F.crosswalks||[]).forEach(c=>{
+    s += `<g aria-hidden="true"><rect x="${c.x}" y="${c.y}" width="${c.w}" height="${c.h}" fill="var(--map-road)"/>`;
+    // 縞は道路の進行方向と平行（歩く方向と直交）: 横向きの道路(dir=v)は横縞、縦向きの道路(dir=h)は縦縞
+    if(c.dir==='v'){ for(let i=c.y+4;i<c.y+c.h-2;i+=8) s += `<rect x="${c.x+3}" y="${i}" width="${c.w-6}" height="4" fill="var(--ink2)"/>`; }
+    else { for(let i=c.x+4;i<c.x+c.w-2;i+=8) s += `<rect x="${i}" y="${c.y+3}" width="4" height="${c.h-6}" fill="var(--ink2)"/>`; }
+    s += `</g>`;
+  });
+  (F.slopes||[]).forEach(p=>{
+    s += `<g aria-hidden="true"><rect class="pin-slope" x="${p.x-28}" y="${p.y-11}" width="56" height="22" rx="11"/><text class="pin-t slope" x="${p.x}" y="${p.y}" dy="0.35em" text-anchor="middle" font-size="10.5" font-weight="700">スロープ</text></g>`;
+  });
+  (F.gates||[]).forEach(g=>{ s += `<g aria-hidden="true"><rect class="pin-gate" x="${g.x-18}" y="${g.y-10}" width="36" height="20" rx="3"/><text class="pin-t gate" x="${g.x}" y="${g.y}" dy="0.35em" text-anchor="middle" font-size="11" font-weight="700">${g.label}</text></g>`; });
+  (F.bus||[]).forEach(g=>{ s += `<g aria-hidden="true"><rect class="pin-bus" x="${g.x-20}" y="${g.y-10}" width="40" height="20" rx="10"/><text class="pin-t" x="${g.x}" y="${g.y}" dy="0.35em" text-anchor="middle" font-size="10" font-weight="700">バス停</text></g>`; });
+  s += `</svg><div class="legend2" aria-label="図の凡例"><span><i class="sw bld"></i>調査済みの建物</span><span><i class="sw off"></i>調査中／対象外</span><span><i class="sw lm"></i>その他の施設</span><span><i class="sw multi"></i>多 ＝ 多目的トイレのある階</span><span><i class="sw sky"></i>スカイウォーク（2階連絡通路）</span><span><i class="sw slope"></i>スロープ</span><span><i class="sw cw"></i>横断歩道</span><span><i class="sw aed"></i>AED（1階）</span><span><i class="sw ev"></i>エレベーター</span></div><div class="cap"><span>配置は模式図です（実際の縮尺・形とは異なります）</span></div>`;
+  const w = $('#mapwrap'); w.innerHTML = s;
+  w.querySelectorAll('.bld').forEach(g=>{
+    const go = ()=>{ location.hash = `#/b/${g.dataset.b}`; };
+    g.addEventListener('click', go);
+    g.addEventListener('keydown', e=>{ if(e.key==='Enter'||e.key===' '){ e.preventDefault(); go(); } });
+  });
+}
+function renderList(){
+  const ul = $('#blist'); ul.innerHTML='';
+  DATA.buildings.forEach(b=>{
+    const {ts,multi,done} = bSummary(b); const off = b.status!=='surveyed';
+    const dim = active.size && ts.length===0 && !off;
+    const li = document.createElement('li');
+    let sub = '';
+    if(b.status==='surveyed'){
+      sub += `<span class="pill">トイレ ${done.length}か所</span>`;
+      if(multi.length) sub += `<span class="pill u">${ICO.multi}多目的 ${multi.map(floorName).join('・')}</span>`;
+      if(active.size) sub += `<span>条件に合う: <b>${ts.length}</b>か所</span>`;
+    } else if(b.status==='pending'){ sub += `<span class="pill">調査中（立ち入り未実施）</span>`; }
+    else { sub += `<span class="pill">今回の調査対象外</span>`; }
+    li.innerHTML = `<button type="button" class="bcard${off?' off':''}${dim?' dim':''}" data-b="${b.code}">
+      <span class="let" aria-hidden="true">${b.letter}</span><span class="nm">${esc(b.name)}</span><span class="arrow" aria-hidden="true">›</span>
+      <span class="sub">${sub}</span></button>`;
+    li.querySelector('button').onclick = ()=>{ location.hash=`#/b/${b.code}`; };
+    ul.appendChild(li);
+  });
+}
+function renderStats(){
+  const all = DATA.buildings.flatMap(b=>b.toilets).filter(t=>!t.pending);
+  const multi = all.filter(t=>t.type==='多目的').length;
+  const ph = all.reduce((n,t)=>n+t.photos.length,0);
+  const nb = DATA.buildings.filter(b=>b.status==='surveyed').length;
+  $('#stats').innerHTML = `<span>調査した建物 <b data-n="${nb}">${nb}</b> 棟</span><span>トイレ <b data-n="${all.length}">${all.length}</b> か所</span><span>多目的トイレ <b data-n="${multi}">${multi}</b> か所</span><span>写真 <b data-n="${ph}">${ph}</b> 枚</span>`;
+  if(motionOn()){
+    $('#stats').querySelectorAll('b[data-n]').forEach(el=>{
+      const n = +el.dataset.n, t0 = performance.now(), dur = 700;
+      const tick = now => { const p = Math.min(1,(now-t0)/dur); el.textContent = Math.round(n*(1-Math.pow(1-p,3))); if(p<1) requestAnimationFrame(tick); };
+      requestAnimationFrame(tick);
+    });
+  }
+}
+function motionOn(){ return document.documentElement.getAttribute('data-motion')!=='off' && !(matchMedia('(prefers-reduced-motion: reduce)').matches && document.documentElement.getAttribute('data-motion')!=='on'); }
+function setMotion(on){ document.documentElement.setAttribute('data-motion', on?'on':'off'); const b=$('#motion'); b.setAttribute('aria-pressed', String(on)); b.textContent = on?'動き: オン':'動き: オフ'; try{ localStorage.setItem('udmap-motion', on?'on':'off'); }catch(e){} }
+$('#motion').onclick = ()=> setMotion(!(document.documentElement.getAttribute('data-motion')==='on' || (document.documentElement.getAttribute('data-motion')!=='off' && !matchMedia('(prefers-reduced-motion: reduce)').matches)));
+try{ const m = localStorage.getItem('udmap-motion'); if(m) setMotion(m==='on'); else if(matchMedia('(prefers-reduced-motion: reduce)').matches) setMotion(false); }catch(e){}
+function renderInfo(){ const F=DATA.features||{}; $('#bflist').innerHTML=(F.info||[]).map(x=>`<li>${esc(x)}</li>`).join(''); }
+function renderHome(){ renderMap(); renderList(); renderInfo(); }
+
+/* ---- BUILDING ---- */
+function miniIcons(t){
+  const keys = t.type==='多目的' ? ['handrail','callbtn','ostomate','baby'] : ['handrail','callbtn','baby','sanitary'];
+  const names = {handrail:'手すり',callbtn:'呼出',ostomate:'オストメイト',baby:'ベビー',sanitary:'サニタリー'};
+  return keys.map(k=>{ const s=st(t.f[k]); return `<span class="mini ${s}">${ICO[s]}<span class="sr">${names[k]}: ${STATE_LABEL[s]}</span><span aria-hidden="true">${names[k]}</span></span>`; }).join('');
+}
+function renderBuilding(code){
+  const b = bById[code]; const v = $('#v-bld');
+  if(!b){ v.innerHTML = `<h1 id="h-bld">建物が見つかりません</h1><p><a href="#/">トップへ戻る</a></p>`; return; }
+  let h = `<div class="bhead"><h1 id="h-bld"><span class="let" aria-hidden="true">${b.letter}</span>${esc(b.name)}</h1>`;
+  if(b.official) h += `<span class="tag grey">${esc(b.official)}</span>`;
+  h += `</div>`;
+  if(b.notes && b.notes.length){
+    h += `<div class="notes"><h2>建物の情報（巡検メモ）</h2><ul>${b.notes.map(n=>`<li>${esc(n)}</li>`).join('')}</ul></div>`;
+  }
+  if(b.status!=='surveyed'){
+    h += `<p class="pending" style="font-size:1rem">${b.status==='pending'?'この建物は立ち入りができなかったため、トイレ設備は調査中です。調査後に追加します。':'この建物は今回の調査対象に含まれていません。'}</p><p><a class="btn" href="#/">← キャンパス図へ戻る</a></p>`;
+    v.innerHTML = h; return;
+  }
+  const floors = [...new Set(b.toilets.map(t=>t.floor))].sort((a,c)=>FLOOR_ORDER.indexOf(a)-FLOOR_ORDER.indexOf(c));
+  const types = ['多目的','女性','男性'];
+  h += `<h2 style="font-size:1.1rem;margin:.6rem 0 .2rem">階ごとのトイレ</h2>`;
+  h += `<div class="legend"><span>${ICO.ok} あり</span><span>${ICO.part} 一部</span><span>${ICO.no} なし</span><span>${ICO.unk} 情報なし</span><span>各トイレを選ぶと写真と詳細を表示します</span></div>`;
+  h += `<div class="ftable-wrap"><table class="ft"><caption class="sr">${esc(b.name)}の階別トイレ一覧</caption><thead><tr><th scope="col">階</th>${types.map(t=>`<th scope="col">${typeName[t]}</th>`).join('')}</tr></thead><tbody>`;
+  floors.forEach(f=>{
+    h += `<tr><th scope="row" class="fl">${floorName(f)}</th>`;
+    types.forEach(tp=>{
+      const ts = b.toilets.filter(t=>t.floor===f && t.type===tp);
+      h += `<td>`;
+      if(!ts.length){ h += `<span class="none">—</span>`; }
+      ts.forEach(t=>{
+        if(t.pending){ h += `<span class="pending">調査中</span>`; return; }
+        h += `<button type="button" class="cellbtn" data-t="${t.id}" aria-label="${esc(`${floorName(f)} ${typeName[tp]}${t.detail?`（${t.detail}）`:''} の詳細を見る`)}">
+          <span class="t"><span>${typeName[tp]}${t.detail?` <small>${esc(t.detail)}</small>`:''}</span>${t.photos.length?`<small>写真${t.photos.length}</small>`:''}</span>
+          <span class="icons">${miniIcons(t)}</span></button>`;
+      });
+      h += `</td>`;
+    });
+    h += `</tr>`;
+  });
+  h += `</tbody></table></div>`;
+  h += `<div class="nav-prev-next"><a class="btn" href="#/">← キャンパス図へ戻る</a></div>`;
+  v.innerHTML = h;
+  v.querySelectorAll('.cellbtn').forEach(btn=>btn.onclick=()=>{ location.hash=`#/t/${btn.dataset.t}`; });
+}
+
+/* ---- DETAIL ---- */
+function fmtNum(n){ return n==null?null:(Number.isInteger(n)?n:n.toFixed(1)); }
+function renderToilet(id){
+  const t = tById[id]; const v = $('#v-toilet');
+  if(!t){ v.innerHTML = `<h1 id="h-toilet">トイレが見つかりません</h1><p><a href="#/">トップへ戻る</a></p>`; return; }
+  const b = t.b;
+  const title = `${b.name} ${floorName(t.floor)} ${typeName[t.type]||'トイレ'}${t.detail?`（${t.detail}）`:''}`;
+  let h = `<div class="dhead"><h1 id="h-toilet">${esc(title)}</h1><div class="meta">`;
+  if(t.hours) h += `<span>利用時間 ${esc(t.hours)}</span>`;
+  h += `<span>ID ${t.id}</span></div></div>`;
+  h += `<div class="detail">`;
+  // photos
+  h += `<section class="card" aria-labelledby="ph-h"><h2 id="ph-h">写真 <span class="n">${t.photos.length}枚</span></h2>`;
+  if(t.rep) h += `<p class="rep">代表写真：同じ構造の他の階で撮影した写真を掲載しています。</p>`;
+  if(!t.photos.length) h += `<p style="color:var(--ink2);margin:0">このトイレの写真はまだありません。</p>`;
+  else {
+    h += `<div class="gallery">` + t.photos.map((p,i)=>`<figure style="--d:${(i*0.08).toFixed(2)}s"><button type="button" data-full="${p.full}" data-alt="${esc(p.alt)}"><img src="${p.thumb}" alt="${esc(p.alt)}" loading="lazy"></button><figcaption>${esc(p.cap)}</figcaption></figure>`).join('') + `</div>`;
+  }
+  h += `</section>`;
+  // facts
+  h += `<section class="card" aria-labelledby="fa-h"><h2 id="fa-h">設備</h2>`;
+  const meas = [];
+  meas.push({k:'入口の段差', v: t.step==='なし'?'なし':(t.step==='あり'?(t.step_h!=null?`${fmtNum(t.step_h)}<small> cm</small>`:'あり'):'<small>情報なし</small>')});
+  meas.push({k:'ドア', v: t.door?esc(t.door):'<small>情報なし</small>'});
+  if(t.w_out!=null) meas.push({k:'出入口の幅（外側）', v:`${fmtNum(t.w_out)}<small> cm</small>`});
+  if(t.w_in!=null) meas.push({k:'出入口の幅（内側）', v:`${fmtNum(t.w_in)}<small> cm</small>`});
+  h += `<div class="measure">${meas.map(m=>`<div><div class="k">${m.k}</div><div class="v">${m.v}</div></div>`).join('')}</div>`;
+  h += `<ul class="facts">`;
+  FACTS.forEach(([k,label],fi)=>{
+    const val = k==='unisex'? t.unisex : t.f[k]; const s = st(val); const note = t.notes && t.notes[label];
+    h += `<li class="fact ${s}" style="--d:${(fi*0.04).toFixed(2)}s"><span class="st" aria-hidden="true">${ICO[s]}</span><span><span class="k">${label}</span><span class="v">${STATE_LABEL[s]}${note?`<small>${esc(note)}</small>`:''}</span></span></li>`;
+  });
+  h += `</ul>`;
+  if(t.remarks || t.memo){
+    h += `<dl class="remarks">`;
+    if(t.remarks) h += `<dt>備考（調査票より）</dt><dd>${esc(t.remarks)}</dd>`;
+    h += `</dl>`;
+  }
+  h += `</section></div>`;
+  // prev/next within building
+  const list = b.toilets.filter(x=>!x.pending); const i = list.indexOf(t);
+  h += `<div class="nav-prev-next">`;
+  h += `<a class="btn" href="#/b/${b.code}">← ${esc(b.name)}の一覧へ</a>`;
+  if(i>0) h += `<a class="btn" href="#/t/${list[i-1].id}">前のトイレ</a>`;
+  if(i<list.length-1) h += `<a class="btn" href="#/t/${list[i+1].id}">次のトイレ</a>`;
+  h += `<a class="btn" href="#/">キャンパス図へ</a></div>`;
+  v.innerHTML = h;
+  v.querySelectorAll('.gallery button').forEach(btn=>btn.onclick=()=>openLb(btn.dataset.full, btn.dataset.alt));
+}
+
+/* ---- lightbox ---- */
+let lbReturn=null;
+function openLb(src, alt){ const lb=$('#lb'); $('#lbimg').src=src; $('#lbimg').alt=alt; $('#lbcap').textContent=alt; lbReturn=document.activeElement; lb.setAttribute('data-open',''); $('#lbclose').focus(); }
+function closeLb(){ const lb=$('#lb'); lb.removeAttribute('data-open'); $('#lbimg').src=''; if(lbReturn) lbReturn.focus(); }
+$('#lbclose').onclick=closeLb; $('#lb').addEventListener('click',e=>{ if(e.target===$('#lb')) closeLb(); });
+document.addEventListener('keydown',e=>{ if(e.key==='Escape' && $('#lb').hasAttribute('data-open')) closeLb(); });
+
+/* ---- routing ---- */
+function announce(msg){ const l=$('#live'); l.textContent=''; setTimeout(()=>l.textContent=msg,50); }
+function setCrumbs(items){ $('#crumbs').innerHTML = items.map((it,i)=> i<items.length-1 ? `<li><a href="${it.href}">${esc(it.label)}</a></li>` : `<li aria-current="page">${esc(it.label)}</li>`).join(''); }
+function route(){
+  const hash = location.hash || '#/';
+  const m = hash.match(/^#\/(b|t)\/([^/]+)/);
+  document.querySelectorAll('.view').forEach(v=>v.removeAttribute('data-active'));
+  let focusEl, title;
+  if(!m){ $('#v-home').setAttribute('data-active',''); setCrumbs([{label:'渋谷キャンパス',href:'#/'}]); title='渋谷キャンパス UDマップ'; focusEl=$('#h-home'); }
+  else if(m[1]==='b'){ renderBuilding(m[2]); $('#v-bld').setAttribute('data-active',''); const b=bById[m[2]]; setCrumbs([{label:'渋谷キャンパス',href:'#/'},{label:b?b.name:'建物'}]); title=`${b?b.name:'建物'} | 渋谷キャンパス UDマップ`; focusEl=$('#h-bld'); }
+  else { renderToilet(m[2]); $('#v-toilet').setAttribute('data-active',''); const t=tById[m[2]]; setCrumbs([{label:'渋谷キャンパス',href:'#/'},{label:t?t.b.name:'建物',href:t?`#/b/${t.b.code}`:'#/'},{label:t?`${floorName(t.floor)} ${typeName[t.type]||'トイレ'}`:'トイレ'}]); title=`${t?`${t.b.name} ${floorName(t.floor)} ${typeName[t.type]||''}`:'トイレ'} | 渋谷キャンパス UDマップ`; focusEl=$('#h-toilet'); }
+  document.title = title;
+  window.scrollTo({top:0});
+  if(focusEl && routed){ focusEl.setAttribute('tabindex','-1'); focusEl.focus({preventScroll:true}); }
+  routed = true;
+}
+let routed=false;
+window.addEventListener('hashchange', route);
+
+/* ---- font size ---- */
+function setFs(v){ document.documentElement.style.setProperty('--fs', `${v}rem`); document.querySelectorAll('[data-fs]').forEach(b=>b.setAttribute('aria-pressed', String(b.dataset.fs===String(v)))); try{ localStorage.setItem('udmap-fs', String(v)); }catch(e){} }
+document.querySelectorAll('[data-fs]').forEach(b=>b.onclick=()=>setFs(b.dataset.fs));
+try{ const s = localStorage.getItem('udmap-fs'); if(s) setFs(s); }catch(e){}
+
+renderStats(); renderFilters(); renderHome(); route();
+</script>
